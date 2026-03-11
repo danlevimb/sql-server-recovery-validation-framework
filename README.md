@@ -1,137 +1,102 @@
-# Automated Data Resilience Framework
-### Backup, Restore Validation & Recovery Automation for SQL Server
+# Automated SQL Server Recovery Validation Framework
+
+A SQL Server framework designed to automatically validate **backup recoverability** and **point-in-time restore scenarios** using deterministic restore chain construction and canary-based verification.
+
+This project demonstrates a production-grade approach to ensuring that SQL Server backups are not only successful but **actually recoverable**.
 
 ---
 
-## 📌 Executive Summary
+# The Problem
 
-This project implements an automated Backup & Recovery framework designed to ensure data resilience, restore reliability, and operational validation in SQL Server 2022 environments.
+Many organizations rely on successful backup jobs as proof of recoverability.
 
-Unlike traditional backup implementations that focus only on backup generation, this framework introduces automated restore validation testing to guarantee recoverability and minimize operational risk.
+However:
 
-The system integrates:
+- A successful backup **does not guarantee** a successful restore.
+- Recovery chains may be broken.
+- Transaction log coverage may be incomplete.
+- STOPAT recovery may fail silently if not validated.
 
-- Automated backup orchestration
-- Point-in-time recovery capability
-- Restore validation testing
-- Logging and observability mechanisms
-- Disaster recovery simulation
-
----
-
-## 🚨 Problem Statement
-
-Backups are often assumed to work — but rarely tested under real failure scenarios.
-
-In many production environments:
-
-- Restore procedures are manual
-- Backup integrity is not validated regularly
-- Recovery Time Objective (RTO) is unknown
-- Recovery Point Objective (RPO) is not measured
-
-This project addresses those gaps by implementing automated restore validation workflows and logging mechanisms to ensure backup reliability.
+This framework focuses on solving that problem by **automatically executing restore validation tests**.
 
 ---
 
-## 🎯 Engineering Objectives
+# Key Capabilities
 
-- Automate full, differential and log backups
-- Enable point-in-time recovery
-- Validate backup integrity through automated restore tests
-- Log execution and errors for traceability
-- Simulate failure scenarios
-- Reduce operational recovery risk
-
----
-
-## 🏗 High-Level Architecture
-
-The framework follows a modular architecture:
-
-1. Backup Layer  
-   - Full / Differential / Log backups  
-   - Retention strategy  
-   - Storage structure organization  
-
-2. Restore Validation Layer  
-   - Automated restore to validation environment  
-   - Integrity checks  
-   - Cleanup process  
-
-3. Logging & Observability Layer  
-   - Execution logs  
-   - Error tracking  
-   - Restore metrics  
-
-4. Automation Layer  
-   - SQL Server Agent job orchestration  
-   - Scheduled execution  
-   - Dependency management  
+- Automatic restore chain construction (FULL / DIFF / LOG)
+- Point-in-time recovery validation
+- Mark-based restore validation
+- Deterministic restore verification using canary records
+- Detailed restore telemetry logging
+- Automated restore testing across multiple databases
 
 ---
 
-## ⭐ Restore Validation Framework
+# Framework Architecture
 
-The core innovation of this project is the automated restore validation mechanism.
+The framework is composed of four main stored procedures:
 
-The workflow:
-
-1. Create the valid backup chain  
-2. Restore database into validation instance  
-3. Apply transaction logs up to defined point-in-time (STOPAT / STOPBEFOREMARK)
-4. Execute validation checks  
-5. Log execution results  
-6. Drop validation database  
-
-This ensures that backups are not only generated — but tested and verified for recoverability.
+| Procedure | Responsibility |
+|-----------|---------------|
+| `cfg.usp_GetLatestBackupFiles` | Determines the correct restore chain |
+| `cfg.usp_RestorePointInTime` | Executes the restore workflow |
+| `cfg.usp_ValidatePitrCanary` | Validates recovery correctness |
+| `cfg.usp_RunRestoreTests` | Orchestrates restore validation tests |
 
 ---
 
-## 🛠 Technologies Used
+# Restore Validation Workflow
 
-- SQL Server 2022 Developer Edition
-- T-SQL (Stored Procedures & Automation Logic)
-- SQL Server Agent
-- Custom logging schema
-- Structured folder-based backup storage
-
----
-
-## ▶ How to Run
-
-1. Deploy schema objects under `sql/schema/`
-2. Deploy stored procedures under `sql/stored_procedures/`
-3. Configure environment paths in configuration tables
-4. Create SQL Agent jobs using scripts under `sql/jobs/`
-5. Execute restore validation procedure manually for testing
-
-Detailed deployment instructions are available in `/docs`.
+1. Generate deterministic canary records
+2. Create a marked transaction boundary
+3. Produce required transaction log backups
+4. Execute restore workflow
+5. Apply STOPAT or STOPBEFOREMARK
+6. Validate restored state using canary verification
+7. Persist telemetry and execution evidence
 
 ---
 
-## 📊 Reliability & Engineering Principles Applied
+# Repository Structure
+| Folder | Description |
+|-----------|---------------|
+| `docs/` | Architecture documentation |
+| `diagrams/` | Visual architecture diagrams |
+| `sql/` | Database objects |
+| `examples/` | Execution outputs and evidence |
 
-- Recovery-first mindset
-- Idempotent execution design
-- Modular stored procedure architecture
-- Failure scenario simulation
-- Observability through structured logging
-- RTO/RPO awareness
-
----
-
-## 🚀 Future Improvements
-
-- Integration with cloud object storage (Azure Blob / S3)
-- CI/CD pipeline for deployment automation
-- Automated reporting dashboard
-- Integration with monitoring tools (Prometheus, Grafana)
-- Infrastructure-as-Code version
 
 ---
 
-## 👤 Author
+# Example Execution
 
-Dan Levi Menchaca  
-Data Infrastructure & Reliability Engineering Enthusiast  
+Example restore validation output:
+Processing database: AdventureWorks2022
+
+Creating PITR canaries
+Generating marked transaction
+
+Executing restore chain
+FULL restore completed
+DIFF restore completed
+LOG restore applied
+STOPAT applied successfully
+
+Validating canary records
+
+Validation result: PASSED
+
+---
+
+# Why This Project Matters
+
+Backup success does not equal recoverability.
+
+This framework demonstrates how to implement **automated recovery validation**, which is a critical component of resilient data platform engineering.
+
+---
+
+# Author
+
+Dan Levi Menchaca Bedolla  
+SQL Server DBA | Data Infrastructure & Reliability Engineering
