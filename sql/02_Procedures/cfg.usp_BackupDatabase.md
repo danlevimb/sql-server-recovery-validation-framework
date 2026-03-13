@@ -1,6 +1,6 @@
 ## `[cfg].[usp_BackupDatabase]`
 
-Executes a controlled backup operation for a specific database, applying standardized backup policies, storage routing, and telemetry capture.Stores a record in `[dbo].[BackupRun]`
+Executes a controlled backup operation for a specific database, applying standardized backup policies, storage routing, and telemetry capture.Stores a record in [`[dbo].[BackupRun]`](/sql/01/01_Tables/dbo.BackupRun.md)
 
 ### **a) Inputs**
 | Parameter | Type | Description |
