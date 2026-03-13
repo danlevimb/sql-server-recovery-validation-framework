@@ -1,6 +1,6 @@
 ## `[cfg].[usp_BackupDatabase]`
 <p align="center">
-<a href="../README.md">Home</a> |
+<a href="/README.md">Home</a> |
 <a href="architecture.md">Architecture</a> |
 <a href="telemetry.md">Telemetry</a> |
 <a href="restore-workflow.md">Restore Workflow</a>
