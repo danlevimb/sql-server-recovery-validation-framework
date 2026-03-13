@@ -1,9 +1,15 @@
-# Framework Architecture
+# Architecture
 
-The Automated SQL Server Recovery Validation Framework operates as a deterministic restore validation pipeline.
+This Framework operates as a deterministic restore validation pipeline.
 
 It integrates with an existing backup ecosystem and executes automated recovery validation through four main components.
 
+--- 
+
+## a) Ecosystem
+
+For this solution to work it needs 
+---
 
 | Role | Procedure | Objective |
 |------|-------------|-------------------|
@@ -14,3 +20,55 @@ It integrates with an existing backup ecosystem and executes automated recovery 
 
 Each component work as a layer that covers each part of the process.
 
+---
+
+
+
+## 1. `[cfg].[usp_GetLatestBackupFiles]` - *The Planner*
+
+### **a) Responsabilities**
+  -  Identifies latest FULL backup
+  -  Selects valid DIFF backup if available
+  -  Constructs LOG restore chain
+  -  Determines target log for STOPAT or STOPBEFOREMARK
+  -  Validates recoverability of the chain
+
+### **b) Inputs**
+| Parameter | Type | Description |
+|------|-------------|-------------------|
+|@SourceDB | SYSNAME | Name of database to process |
+|@RestoreMode|  NVARCHAR(10) | `'AUTO'`: Applies FULL>DIFF>LOGs restore; `'LOG_ONLY'`: Applies FULL>LOGs restore  |
+|@StopAtDate |  DATETIME2(3) | Date / Hour in Format YYYY-MM-DD HH:MM:SS.### where restore will STOPAT |
+|@Mark    |     NVARCHAR(128)| Transaction Name where restore will STOPBEFOREMARK (If specified, overrides @StopAtDate) |
+
+
+### **c) Procedure Highlights**
+-  It constructs the restore chain based on `msdb.dbo.backupset`
+-  Searches for the nearest FULL Backup from where to start.
+-  If `AUTO` specified, It searches for the nearest DIFF Backup to jump in.
+-  If `LOG_ONLY` specified, IT Searches for all the LOG Files to restore.
+-  It builds LOG-chain based on First-LSN / Last-LSN between LOGs.
+-  If `@StopAtDate` specified: Validates selected LOG-File with `[sys].[fn_dump_dblog]` to ensure StopAt is effectively applicable.
+
+
+### **d) Outputs**
+| Column | Type | Description |
+|------|-------------|-------------------|
+|StepOrder|INT|Consecutive number indicating restore order|
+|backup_set_id|INT|Id from the backup set|
+|FirstLSN|NUMERIC(25,0)|First LSN of backup file|
+|LastLSN|NUMERIC(25,0)|Last LSN of backup file|
+|CheckpointLSN|NUMERIC(25,0)|Database Checkpoint LSN|
+|DatabaseBackupLSN|NUMERIC(25,0)|FULL-Backup LSN|
+|BackupFileName|NVARCHAR(4000)|Full path of file|
+|BackupType|VARCHAR(10)| FULL / DIFF / LOG|
+|StartDate|DATETIME2|Backup start date/hour|
+|FinishDate|DATETIME2|Backup finish date/hour|
+|IsStopAtDate|BIT| Indicates the file is marked for STOPAT|
+|StopDate|DATETIME2(3)|Inicates the date/hour to STOPAT |
+|IsStopAtMarker|BIT|Inidicates the file is marked for STOPBEFOREMARK|
+|Marker|NVARCHAR(128)|Name of marker to stop|
+|MinCommitTime|DATETIME2(3)|Effectively Min Commit time (From dump log)|
+|MaxCommitTime|DATETIME2(3)|Effectively Max Commit time (From dump log)|
+
+---
