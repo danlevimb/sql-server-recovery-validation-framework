@@ -10,7 +10,7 @@
 
 Stores execution telemetry for restore validation tests performed by the framework.
 
-A Master-Detail structure where each record represents the header-level execution metadata of a restore validation run, capturing information about the restore operation, backup chain used, validation steps executed, and the final outcome of the recovery test. Detail level found in [`[log].[RestoreStepExecution]`](/sql/01_Tables/log.RestoreStepExecution)
+A Master-Detail structure where each record represents the header-level execution metadata of a restore validation run, capturing information about the restore operation, backup chain used, validation steps executed, and the final outcome of the recovery test. Detail level found in [`[log].[RestoreStepExecution]`](/sql/01_Tables/log.RestoreStepExecution.md)
 
 ### **a) Structure:**
 | Column | Type | Description |
