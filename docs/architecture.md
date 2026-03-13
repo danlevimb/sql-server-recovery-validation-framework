@@ -26,12 +26,12 @@ Each component work as a layer that covers each part of the process.
 
 ## 1. `[cfg].[usp_GetLatestBackupFiles]` - *The Planner*
 
-### **a) Responsabilities**
-  -  Identifies latest FULL backup
-  -  Selects valid DIFF backup if available
-  -  Constructs LOG restore chain
-  -  Determines target log for STOPAT or STOPBEFOREMARK
-  -  Validates recoverability of the chain
+### **a) What it does..**
+  -  Identify latest FULL backup acording provided date.
+  -  Selects valid DIFF backup if available.
+  -  Builds LOG backup chain based on First/Last LSN.
+  -  Detects target LOG for STOPAT or STOPBEFOREMARK.
+  -  Validates marked LOG by dumping content to verify right LOG to StopAt.
 
 ### **b) Inputs**
 | Parameter | Type | Description |
