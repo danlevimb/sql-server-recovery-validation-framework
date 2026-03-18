@@ -1,14 +1,5 @@
 # Automated SQL Server Recovery Validation Framework
-### A recoverable backup is the only good backup.
-
-<p align="center">
-<a href="README.md">Home</a> |
-<a href="docs/architecture.md">Architecture</a> |
-<a href="telemetry.md">Telemetry</a> |
-<a href="restore-workflow.md">Restore Workflow</a>
-</p>
-
----
+### <p align="center">A recoverable backup is the only good backup.</a></p>
 
 This project presents a practical, production-oriented approach to implementing automated recovery validation in SQL Server environments. Its main objective is to ensure that backups are not only successfully created, but **proven to be recoverable**.
 
@@ -24,7 +15,7 @@ In many systems, restore chains are unverified, point-in-time recovery is untest
 
 When failure occurs, uncertainty becomes risk.
 
-Recoverability is assumed, not validated.
+***Recoverability is assumed, not validated.***
 
 ## The Solution
 
@@ -34,9 +25,7 @@ It deterministically constructs restore chains, executes point-in-time recovery 
 
 Each execution produces auditable telemetry, allowing recovery capabilities to be measured, tested, and trusted.
 
-What was once assumed can now be verified.
-
-What was uncertain is now controlled.
+***What was once assumed can now be verified. What was uncertain is now controlled.***
 
 ## Key Capabilites
 - **Deterministic Restore Chain Construction**  
@@ -67,7 +56,6 @@ What was uncertain is now controlled.
 
 ***These capabilities transform backup validation into a reliable, measurable, and engineering-driven recovery process.***
 
-
 ## How It Works
 
 The framework validates recoverability through a deterministic workflow:
@@ -79,7 +67,7 @@ The framework validates recoverability through a deterministic workflow:
 - Validates restored data against expected canary states  
 - Captures detailed telemetry for audit and analysis  
 
-Recoverability is validated through execution, not assumption.
+***Recoverability is validated through execution, not assumption.***
 
 ## Architecture Overview 
 
@@ -116,9 +104,7 @@ Example restore validation output:
 - Validating canary records
 - Validation result: PASSED
 
----
-
-# Repository Structure
+## Repository Structure
 
 | Folder | Description |
 |------|-------------|
@@ -127,26 +113,28 @@ Example restore validation output:
 | [`sql/`](sql/) | Database objects (tables, procedures, demos) |
 | [`examples/`](examples/) | Execution outputs and validation evidence |
 
----
+## Why This Matters
 
-# Why This Matters
+In many systems, backup success is treated as a guarantee of recoverability. In reality, most environments operate without ever validating whether their backups can be reliably restored under real conditions.
 
-A successful backup does **not** guarantee recoverability.
+This framework addresses that gap by turning recovery validation into a repeatable and measurable engineering practice. It replaces assumptions with evidence and transforms restore operations into controlled, testable processes.
 
-Organizations frequently discover restore failures only during production incidents.
+By adopting this approach, organizations gain the ability to:
 
-This framework demonstrates how to implement **continuous recovery validation** as part of a resilient data platform strategy.
+- verify that backups can actually be restored  
+- validate point-in-time recovery scenarios with confidence  
+- generate auditable evidence of recovery capability  
+- measure and improve real recovery performance (RTO/RPO)  
+- reduce operational risk during critical incidents  
 
-Instead of assuming recoverability, this system **proves it**.
+***Recoverability is not a checkbox. It is a capability that must be continuously validated.***
 
----
-
-# Author
+## Author
 
 Dan Levi Menchaca Bedolla  
-SQL Server Data Infrastructure & Reliability Engineer
+Data Infrastructure & Reliability Engineering
 
----
+--- 
 
 <p align="center">
 <a href="README.md">Home</a> |
