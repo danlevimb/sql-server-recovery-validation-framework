@@ -66,5 +66,5 @@ Each execution generates a telemetry record in `log.BackupRun`, capturing execut
 - `cfg.usp_BackupByTierAndType` → Batch backup orchestration
 
 ## Source Code
- [View full implementation](sql/cfg/cfg.usp_BackupDatabase.sql)
+ [View full implementation](../../sql/cfg/cfg.usp_BackupDatabase.sql)
 
