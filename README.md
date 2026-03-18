@@ -7,6 +7,8 @@ The framework provides a deterministic and automated mechanism to construct vali
 
 By combining restore orchestration, validation techniques, and execution logging, this solution transforms traditional backup strategies into **measurable and verifiable recovery processes**, allowing organizations to move from assuming recoverability to actually proving it.
 
+***This is not a backup tool. This is a Recovery Validation Framework.***
+
 ## The Problem
 
 Backup success does not guarantee recoverability.
@@ -27,7 +29,7 @@ Each execution produces auditable telemetry, allowing recovery capabilities to b
 
 ***What was once assumed can now be verified. What was uncertain is now controlled.***
 
-## Key Capabilites
+## Key Capabilities
 - **Deterministic Restore Chain Construction**  
   Automatically builds valid restore sequences (FULL / DIFF / LOG) based on backup metadata, ensuring correct LSN continuity and recovery order.
 - **Point-in-Time Recovery (PITR) Execution**  
@@ -90,7 +92,7 @@ It records key information across multiple levels:
 
 This approach enables full traceability of recovery operations and provides the data required to validate restore integrity, analyze performance, and refine RTO/RPO objectives. Recoverability is no longer assumed — it is observable, measurable, and engineered.
 
-## Example Execution
+## Sample Execution Output
 
 Example restore validation output:
 - Processing database: AdventureWorks2022
