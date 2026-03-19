@@ -1,7 +1,5 @@
-> ***This procedure is part of the backup layer of the recovery validation framework.***
-> 
 # cfg.usp_BackupDatabase
-
+> ***Backup Layer***
 ## Overview
 
 `cfg.usp_BackupDatabase` is a core component of the framework responsible for executing SQL Server backups based on a configurable and policy-driven strategy.
