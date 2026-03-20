@@ -108,5 +108,6 @@ This procedure represents the logical validation layer of the framework.
 
 Its purpose is to verify recoverability using semantic evidence rather than relying only on restore completion status. By validating BEFORE / MARK / AFTER canary states, the procedure provides deterministic proof that the restore stopped at the intended logical boundary.
 
-Source Code
+## Source Code
+
 [View full implementation](../../sql/cfg/usp_ValidatePitrCanary.sql)
