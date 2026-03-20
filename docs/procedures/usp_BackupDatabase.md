@@ -1,5 +1,5 @@
 # cfg.usp_BackupDatabase
-> ***Backup Layer***
+> *Backup Layer - Execution*
 ## Overview
 
 `cfg.usp_BackupDatabase` is a core component of the framework responsible for executing SQL Server backups based on a configurable and policy-driven strategy.
@@ -53,7 +53,7 @@ EXEC cfg.usp_BackupDatabase
 ```
 ## Outputs
 
-Each execution generates a telemetry record in `log.BackupRun`, capturing execution timing, backup type, storage paths, verification results, and error diagnostics.
+Each execution generates a telemetry record in `[log].[BackupRun]`, capturing execution timing, backup type, storage paths, verification results, and error diagnostics.
 
 
 
