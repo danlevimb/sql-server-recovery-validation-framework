@@ -16,7 +16,7 @@
 
 Instead of executing backups individually, this procedure centralizes backup execution logic, allowing environments to scale backup strategies in a controlled and consistent manner.
 
-It acts as a dispatcher that invokes [`cfg.usp_BackupDatabase`](../../docs/procedures/usp_BackupDatabase.md) for each eligible database.
+It acts as a dispatcher that invokes [`[cfg].[usp_BackupDatabase]`](../../docs/procedures/usp_BackupDatabase.md) for each eligible database.
 
 ## Responsibilities
 
