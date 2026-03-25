@@ -15,7 +15,7 @@ This section contains the stored procedures that implement the core logic of the
 Configuration procedures provide access to framework settings, resolve dynamic values such as paths, environment-specific parameters.
 
 - [`[cfg].[usp_GetActiveBasePath]`](../docs/procedures/usp_GetActiveBasePath.md)
-- [`[cfg].[usp_GetRestoreTestBasePath]`](/sql/02_Procedures/usp_GetRestoreTestBasePath.md)
+- [`[cfg].[usp_GetRestoreTestBasePath]`](../docs/procedures/usp_GetRestoreTestBasePath.md)
 
 ## Backup
 Backup procedures orchestrate and execute database backup operations based on policy and tier configuration.
