@@ -1,3 +1,11 @@
+<p align="center">
+<a href="/README.md">Home</a> |
+<a href="../../sql/01_Tables.md">Tables</a> |
+<a href="../../sql/02_Procedures.md">Procedures</a>
+</p>
+
+---
+
 # log.RestoreTestRun
 
 ## Overview
@@ -57,3 +65,11 @@ It acts as the **main evidence layer for restore test execution and recoverabili
 | 206 | DevSandbox | DevSandbox_RestoreTest | NULL | 0 | 1 | 1 | NULL |
 
 > ***Note:** The canary-related columns (`CanaryBeforeName`, `CanaryMarkName`, `CanaryAfterName`, `CanaryValidated`, `CanaryPassed`, `CanaryMessage`) are populated only when the restore test is executed through the orchestrator procedure `cfg.usp_RunRestoreTests`.*
+
+---
+
+<p align="center">
+<a href="/README.md">Home</a> |
+<a href="../../sql/01_Tables.md">Tables</a> |
+<a href="../../sql/02_Procedures.md">Procedures</a>
+</p>
