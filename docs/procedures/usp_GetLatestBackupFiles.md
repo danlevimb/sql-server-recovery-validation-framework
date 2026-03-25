@@ -70,12 +70,12 @@ EXEC cfg.usp_GetLatestBackupFiles
 - Backup timestamps
 - Execution ordering
 
-This output is later consumed by `[cfg].[usp_RestorePointInTime]`.
+This output is later consumed by [`[cfg].[usp_RestorePointInTime]`](../../docs/procedures/usp_RestorePointInTime.md).
 
 ## Related Components
 
-- `[cfg].[usp_RestorePointInTime]` → Executes restore operations
-- `[cfg].[usp_ValidatePitrCanary]` → Validates restore correctness
+- [`[cfg].[usp_RestorePointInTime]`](../../docs/procedures/usp_RestorePointInTime.md) → Executes restore operations
+- [`[cfg].[usp_ValidatePitrCanary]`](../../docs/procedures/usp_ValidatePitrCanary.md) → Validates restore correctness
 - `[msdb].[dbo].[backupset]` → Backup metadata source
 - `[msdb].[dbo].[backupmediafamily]` → Backup file resolution
 
