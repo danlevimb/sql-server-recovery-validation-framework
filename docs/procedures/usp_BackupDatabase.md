@@ -68,7 +68,7 @@ Each execution generates a telemetry record in `[log].[BackupRun]`, capturing ex
 ## Related Components
 - [`[cfg].[DatabasePolicy]`](../../sql/01_Tables/cfg.DatabasePolicy.md) → Backup configuration rules 
 - [`[log].[BackupRun]`](../../sql/01_Tables/log.BackupRun.md) → Backup execution telemetry
-- `[cfg].[usp_BackupByTierAndType]` → Batch backup orchestration
+- [`[cfg].[usp_BackupByTierAndType]`](../../docs/procedures/usp_BackupByTierAndType.md) → Batch backup orchestration
 
 ## Source Code
 [View full implementation](../../sql/cfg/usp_BackupDatabase.sql)
