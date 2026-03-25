@@ -13,7 +13,7 @@ This keeps restore test workflows easier to read while preserving centralized pa
 ## Responsibilities
 
 - Resolve the active restore test base path  
-- Delegate storage resolution and validation to [`cfg.usp_GetActiveBasePath`](../../docs/procedures/usp_GetActiveBasePath.md)
+- Delegate storage resolution and validation to [`[cfg].[usp_GetActiveBasePath]`](../../docs/procedures/usp_GetActiveBasePath.md)
 - Provide a simplified interface for restore test workflows  
 - Improve readability of restore-related procedures  
 
