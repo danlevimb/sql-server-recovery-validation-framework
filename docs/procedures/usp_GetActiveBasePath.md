@@ -38,7 +38,7 @@ This approach centralizes path resolution and validation logic, allowing downstr
 The procedure follows a simple but deterministic resolution pattern:
 
 1. Normalize the input `@PathType`  
-2. Retrieve the active base path from [`cfg.BackupPaths`](../../sql/01_Tables/cfg.BackupPaths.md)
+2. Retrieve the active base path from [`[cfg].[BackupPaths]`](../../sql/01_Tables/cfg.BackupPaths.md)
 3. Validate that a configuration entry exists  
 4. Validate that the path is not empty  
 5. Normalize the path to ensure trailing separator consistency  
