@@ -1,3 +1,9 @@
+<p align="center">
+<a href="/README.md">Home</a> |
+<a href="../../sql/01_Tables.md">Tables</a> |
+<a href="../../sql/02_Procedures.md">Procedures</a>
+</p>
+
 # cfg.usp_RestorePointInTime
 
 > *Restore Layer - Execution*
@@ -130,3 +136,11 @@ By persisting both header-level and step-level telemetry, the procedure converts
 ## Source Code
 
 [View full implementation](../../sql/cfg/usp_RestorePointInTime.sql)
+
+---
+
+<p align="center">
+<a href="/README.md">Home</a> |
+<a href="../../sql/01_Tables.md">Tables</a> |
+<a href="../../sql/02_Procedures.md">Procedures</a>
+</p>
