@@ -1,3 +1,12 @@
+<p align="center">
+<a href="/README.md">Home</a> |
+<a href="../../sql/01_Tables.md">Tables</a> |
+<a href="../../sql/02_Procedures.md">Procedures</a>
+</p>
+
+
+---
+
 # dbo.PitrCanary
 
 ## Overview
@@ -32,3 +41,11 @@ It acts as the **functional validation layer**, complementing technical restore 
 | 4 | PITR_BEFORE_20260325_090000 | NULL | 2026-03-25 08:59:50.000 |
 | 5 | MARK_20260325_090000 | RT_20260325_090000 | 2026-03-25 09:00:00.000 |
 | 6 | PITR_AFTER_20260325_090000 | RT_20260325_090000 | 2026-03-25 09:00:10.000 |
+
+--- 
+
+<p align="center">
+<a href="/README.md">Home</a> |
+<a href="../../sql/01_Tables.md">Tables</a> |
+<a href="../../sql/02_Procedures.md">Procedures</a>
+</p>
