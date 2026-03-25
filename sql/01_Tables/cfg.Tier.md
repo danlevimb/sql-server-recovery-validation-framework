@@ -43,3 +43,11 @@ It serves as the **foundation for aligning technical operations with business co
 | 2 | High | 15 | 60 | 1440 | 120 | 15 |
 | 3 | Medium | 60 | 240 | 1440 | 360 | NULL |
 | 4 | Low | 1440 | 720 | 10080 | 1440 | NULL |
+
+--- 
+
+<p align="center">
+<a href="/README.md">Home</a> |
+<a href="../../sql/01_Tables.md">Tables</a> |
+<a href="../../sql/02_Procedures.md">Procedures</a>
+</p>
