@@ -1,3 +1,11 @@
+<p align="center">
+<a href="/README.md">Home</a> |
+<a href="../../sql/01_Tables.md">Tables</a> |
+<a href="../../sql/02_Procedures.md">Procedures</a>
+</p>
+
+---
+
 # cfg.usp_GetLatestBackupFiles
 
 > *Restore Layer - Planning*
@@ -73,3 +81,11 @@ This output is later consumed by `[cfg].[usp_RestorePointInTime]`.
 
 ## Source Code
 [View full implementation](../../sql/cfg/usp_GetLatestBackupFiles.sql)
+
+--- 
+
+<p align="center">
+<a href="/README.md">Home</a> |
+<a href="../../sql/01_Tables.md">Tables</a> |
+<a href="../../sql/02_Procedures.md">Procedures</a>
+</p>
