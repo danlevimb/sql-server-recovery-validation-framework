@@ -21,8 +21,8 @@ This procedure is designed to standardize backup operations and serve as the fou
 - Execute FULL / DIFF / LOG backups  
 - Apply compression and checksum options  
 - Support PRIMARY and SECONDARY (mirrored) backup paths  
-- Integrate with backup telemetry (`[log].[BackupRun]`)  
-- Enforce policy-driven backup behavior via `[cfg].[DatabasePolicy]`
+- Integrate with backup telemetry [`[log].[BackupRun]`](../../sql/01_Tables/log.BackupRun.md)
+- Enforce policy-driven backup behavior via [`[cfg].[DatabasePolicy]`](../../sql/01_Tables/cfg.DatabasePolicy.md)
 
 ## Parameters
 
@@ -48,7 +48,7 @@ The procedure follows a structured execution pattern:
 2. Determine target paths (PRIMARY / SECONDARY)  
 3. Execute BACKUP command with configured options  
 4. Optionally perform backup verification  
-5. Persist execution results into `[log].[BackupRun]`  
+5. Persist execution results into [`[log].[BackupRun]`](../../sql/01_Tables/log.BackupRun.md)
 
 ## Example Usage
 
@@ -61,7 +61,7 @@ EXEC cfg.usp_BackupDatabase
 ```
 ## Outputs
 
-Each execution generates a telemetry record in `[log].[BackupRun]`, capturing execution timing, backup type, storage paths, verification results, and error diagnostics.
+Each execution generates a telemetry record in [`[log].[BackupRun]`](../../sql/01_Tables/log.BackupRun.md), capturing execution timing, backup type, storage paths, verification results, and error diagnostics.
 
 
 
