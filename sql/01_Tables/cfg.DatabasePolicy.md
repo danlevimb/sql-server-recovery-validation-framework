@@ -1,4 +1,4 @@
-# [cfg].[DatabasePolicy]
+# cfg.DatabasePolicy
 
 ## Overview
 The `[cfg].[DatabasePolicy]` table defines the backup and recovery configuration at the database level. It controls which databases are included in the framework and specifies the backup strategy and storage behavior applied to each one.
