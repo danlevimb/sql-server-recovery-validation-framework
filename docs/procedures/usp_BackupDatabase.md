@@ -1,3 +1,11 @@
+<p align="center">
+<a href="/README.md">Home</a> |
+<a href="../../sql/01_Tables.md">Tables</a> |
+<a href="../../sql/02_Procedures.md">Procedures</a>
+</p>
+
+---
+
 # cfg.usp_BackupDatabase
 > *Backup Layer - Execution*
 ## Overview
@@ -65,3 +73,10 @@ Each execution generates a telemetry record in `[log].[BackupRun]`, capturing ex
 ## Source Code
 [View full implementation](../../sql/cfg/usp_BackupDatabase.sql)
 
+---
+
+<p align="center">
+<a href="/README.md">Home</a> |
+<a href="../../sql/01_Tables.md">Tables</a> |
+<a href="../../sql/02_Procedures.md">Procedures</a>
+</p>
