@@ -62,7 +62,7 @@ The procedure returns a single resolved value through the output parameter.
 
 ## Related Components
 - [`[cfg].[BackupPaths]`](../../sql/01_Tables/cfg.BackupPaths.md) → Stores active path configuration
-- `[cfg].[usp_BackupDatabase]` → Backup execution engine
+- [`[cfg].[usp_BackupDatabase]`](../../docs/procedures/usp_BackupDatabase.md) → Backup execution engine
 - `[cfg].[usp_GetRestoreTestBasePath]` → Restore test path resolution
 - `[cfg].[usp_GetLatestBackupFiles]` → Restore planning engine
 
