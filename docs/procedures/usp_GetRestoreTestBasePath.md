@@ -46,8 +46,8 @@ SELECT @BasePath AS RestoreTestBasePath;
 The procedure returns a single resolved value through the output parameter.
 
 ## Related Components
-- `[cfg].[usp_GetActiveBasePath]` → Storage resolution and validation engine
-- `[cfg].[usp_RestorePointInTime]` → Restore execution engine
+- [`[cfg].[usp_GetActiveBasePath]`](../../docs/procedures/usp_GetActiveBasePath.md) → Storage resolution and validation engine
+- [`[cfg].[usp_RestorePointInTime]`](../../docs/procedures/usp_RestorePointInTime.md) → Restore execution engine
 
 ## Design Notes
 
