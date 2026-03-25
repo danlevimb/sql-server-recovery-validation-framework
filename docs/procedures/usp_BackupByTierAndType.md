@@ -16,14 +16,14 @@
 
 Instead of executing backups individually, this procedure centralizes backup execution logic, allowing environments to scale backup strategies in a controlled and consistent manner.
 
-It acts as a dispatcher that invokes `cfg.usp_BackupDatabase` for each eligible database.
+It acts as a dispatcher that invokes [`cfg.usp_BackupDatabase`](../../docs/procedures/usp_BackupDatabase.md) for each eligible database.
 
 ## Responsibilities
 
-- Select databases based on `[cfg].[DatabasePolicy]`
+- Select databases based on [`[cfg].[DatabasePolicy]`](../../sql/01_Tables/cfg.DatabasePolicy.md)
 - Filter databases by Tier and inclusion rules
 - Execute FULL / DIFF / LOG backups in batch mode
-- Delegate execution to `[cfg].[usp_BackupDatabase]`
+- Delegate execution to [`[cfg].[usp_BackupDatabase]`](../../docs/procedures/usp_BackupDatabase.md)
 - Maintain execution correlation across all processed databases
 - Enable scalable and standardized backup operations
 
@@ -45,10 +45,10 @@ It acts as a dispatcher that invokes `cfg.usp_BackupDatabase` for each eligible 
 
 The procedure follows a deterministic orchestration flow:
 
-1. Read database configuration from `[cfg].[DatabasePolicy]`
+1. Read database configuration from [`[cfg].[DatabasePolicy]`](../../sql/01_Tables/cfg.DatabasePolicy.md)
 2. Filter databases by `TierID` and inclusion flags
 3. Iterate through eligible databases
-4. Execute `[cfg].[usp_BackupDatabase]` for each database
+4. Execute [`[cfg].[usp_BackupDatabase]`](../../docs/procedures/usp_BackupDatabase.md) for each database
 5. Maintain correlation across all executions using `CorrelationID`
 
 ## Example Usage
