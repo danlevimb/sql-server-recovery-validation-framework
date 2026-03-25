@@ -1,3 +1,9 @@
+<p align="center">
+<a href="/README.md">Home</a> |
+<a href="../../sql/01_Tables.md">Tables</a> |
+<a href="../../sql/02_Procedures.md">Procedures</a>
+</p>
+
 # log.BackupRun
 
 ## Overview
@@ -50,3 +56,11 @@ It acts as the **main execution log for backup activity** across the platform.
 | 101 | LabCriticalDB | FULL | 2026-03-24 01:00:00.000 | 1 | C:\BD\Backup\PRIMARY\LabCriticalDB_FULL_20260324_010000.bak | 1 |
 | 102 | LabCriticalDB | LOG | 2026-03-24 01:05:00.000 | 1 | C:\BD\Backup\PRIMARY\LabCriticalDB_LOG_20260324_010500.trn | NULL |
 | 103 | ReportingDB | DIFF | 2026-03-24 02:00:00.000 | 0 | C:\BD\Backup\PRIMARY\ReportingDB_DIFF_20260324_020000.bak | 0 |
+
+--- 
+
+<p align="center">
+<a href="/README.md">Home</a> |
+<a href="../../sql/01_Tables.md">Tables</a> |
+<a href="../../sql/02_Procedures.md">Procedures</a>
+</p>
