@@ -45,8 +45,8 @@ The procedure follows a deterministic planning process:
 
 1. Retrieve backup history metadata (msdb and/or internal tables)  
 2. Identify the most recent valid `FULL` backup prior to target recovery point  
-3. Determine whether a DIFF backup applies  
-4. Build the LOG chain based on LSN continuity
+3. Determine whether a `DIFF` backup applies  
+4. Build the `LOG` chain based on LSN continuity
 5. Validate restore sequence integrity  
 6. Output ordered restore steps for execution  
 
