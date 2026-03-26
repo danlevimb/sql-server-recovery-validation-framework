@@ -24,7 +24,7 @@ This procedure does not perform restore operations. Its purpose is to determine 
 - Compare source and target canary states  
 - Confirm that the recovery boundary was respected  
 - Produce structured validation results  
-- Support deterministic evidence for STOPBEFOREMARK scenarios  
+- Support deterministic evidence for `STOPBEFOREMARK` scenarios  
 - Provide validation output suitable for telemetry persistence  
 
 ## Parameters
@@ -70,7 +70,7 @@ The procedure returns a validation contract containing:
 - `CanaryPassed`
 - `CanaryMessage`
 
-This contract is intended to be consumed by the orchestration layer and persisted into `[log].[RestoreTestRun]`.
+This contract is intended to be consumed by the orchestration layer and persisted into [`[log].[RestoreTestRun]`](../../sql/01_Tables/log.RestoreTestRun.md).
 
 ### *2. Runtime validation trace*
 
@@ -105,16 +105,16 @@ CanaryPassed       : 1
 CanaryMessage      : PITR Canary VALID: STOPBEFOREMARK respected.
 ```
 ## Related Components
-- `[cfg].[usp_RunRestoreTests]` → Recovery orchestration engine
-- `[cfg].[usp_RestorePointInTime]` → Restore execution engine
-- `[dbo].[PitrCanary]` → Logical validation artifact table
-- `[log].[RestoreTestRun]` → Stores validation evidence at header level
+- [`[cfg].[usp_RunRestoreTests]`](../../docs/procedures/usp_RunRestoreTests.md) → Recovery orchestration engine
+- [`[cfg].[usp_RestorePointInTime]`](../../docs/procedures/usp_RestorePointInTime.md) → Restore execution engine
+- [`[dbo].[PitrCanary]`](../../sql/01_Tables/dbo.PitrCanary.md) → Logical validation artifact table
+- [`[log].[RestoreTestRun]`](../../sql/01_Tables/log.RestoreTestRun.md) → Stores validation evidence at header level
 
 ## Design Notes
 
 This procedure represents the logical validation layer of the framework.
 
-Its purpose is to verify recoverability using semantic evidence rather than relying only on restore completion status. By validating BEFORE / MARK / AFTER canary states, the procedure provides deterministic proof that the restore stopped at the intended logical boundary.
+Its purpose is to verify recoverability using semantic evidence rather than relying only on restore completion status. By validating `BEFORE` / `MARK` / `AFTER` canary states, the procedure provides deterministic proof that the restore stopped at the intended logical boundary.
 
 ## Source Code
 
