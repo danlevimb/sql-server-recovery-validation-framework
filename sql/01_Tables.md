@@ -2,7 +2,7 @@
 
 <p align="center">
 <a href="/README.md">Home</a> |
-<a href="/docs/architecture.md">Architecture</a> |
+<a href="/sql/02_Procedures.md">Procedures</a> |
 <a href="/docs/telemetry.md">Telemetry</a> |
 <a href="/docs/restore-workflow.md">Restore Workflow</a>
 </p>
@@ -32,7 +32,7 @@ Validation tables provide functional evidence that restore boundaries behaved as
 
 <p align="center">
 <a href="/README.md">Home</a> |
-<a href="/docs/architecture.md">Architecture</a> |
+<a href="/sql/02_Procedures.md">Procedures</a> |
 <a href="/docs/telemetry.md">Telemetry</a> |
 <a href="/docs/restore-workflow.md">Restore Workflow</a>
 </p>
