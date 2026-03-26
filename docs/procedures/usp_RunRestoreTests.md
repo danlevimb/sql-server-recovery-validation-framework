@@ -108,8 +108,8 @@ This runtime trace is intended for operator observability and troubleshooting, w
 - [`[cfg].[usp_ValidatePitrCanary]`](../../docs/procedures/usp_ValidatePitrCanary.md) → Recovery validation engine
 - [`[cfg].[usp_BackupDatabase]`](../../docs/procedures/usp_BackupDatabase.md) → Log backup generation for test boundaries
 - [`[dbo].[PitrCanary]`](../../sql/01_Tables/dbo.PitrCanary.md) → Logical validation artifact table
-- `[log].[RestoreTestRun]` → Restore execution header telemetry
-- `[log].[RestoreStepExecution]` → Restore chain execution detail
+- [`[log].[RestoreTestRun]`](../../sql/01_Tables/log.RestoreTestRun.md) → Restore execution header telemetry
+- [`[log].[RestoreStepExecution]`](../../sql/01_Tables/log.RestoreStepExecution.md) → Restore chain execution detail
 
 ## Design Notes
 
