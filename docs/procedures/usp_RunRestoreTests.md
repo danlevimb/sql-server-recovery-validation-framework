@@ -22,9 +22,9 @@ This procedure is designed to validate recoverability as an operational capabili
 - Generate `BEFORE` / `MARK` / `AFTER` canary records  
 - Create marked transaction boundaries for recovery validation  
 - Produce log backups required for the restore scenario  
-- Invoke `[cfg].[usp_RestorePointInTime]`  
-- Invoke `[cfg].[usp_ValidatePitrCanary]`  
-- Persist canary validation results into `[log].[RestoreTestRun]`  
+- Invoke [`[cfg].[usp_RestorePointInTime]`](../../docs/procedures/usp_RestorePointInTime.md)  
+- Invoke [`[cfg].[usp_ValidatePitrCanary]`](../../docs/procedures/usp_ValidatePitrCanary.md)  
+- Persist canary validation results into [`[log].[RestoreTestRun]`](../../sql/01_Tables/log.RestoreTestRun.md)
 - Provide operational visibility into recovery test execution  
 
 ## Parameters
@@ -48,8 +48,8 @@ The procedure follows a deterministic validation workflow:
 2. Generate canary evidence in the source database  
 3. Create a marked transaction boundary  
 4. Produce log backups that define the validation window  
-5. Invoke `[cfg].[usp_RestorePointInTime]` to execute the restore  
-6. Invoke `[cfg].[usp_ValidatePitrCanary]` to verify logical correctness  
+5. Invoke [`[cfg].[usp_RestorePointInTime]`](../../docs/procedures/usp_RestorePointInTime.md) to execute the restore  
+6. Invoke [`[cfg].[usp_ValidatePitrCanary]`](../../docs/procedures/usp_ValidatePitrCanary.md) to verify logical correctness  
 7. Persist validation results into restore telemetry tables  
 8. Return structured execution results for operational review  
 
@@ -69,8 +69,8 @@ EXEC cfg.usp_RunRestoreTests
 Each execution generates outputs at three levels.
 
 ### *1. Persisted telemetry*
-- **Header-level** in `[log].[RestoreTestRun]`
-- **Step-level** in `[log].[RestoreStepExecution]`
+- **Header-level** in [`[log].[RestoreTestRun]`](../../sql/01_Tables/log.RestoreTestRun.md)
+- **Step-level** in [`[log].[RestoreStepExecution]`](../../sql/01_Tables/log.RestoreStepExecution.md)
 
 These tables store execution metadata, restore telemetry, canary validation status, and step-by-step restore history.
 
@@ -104,10 +104,10 @@ This runtime trace is intended for operator observability and troubleshooting, w
 
 ## Related Components
 
-- `[cfg].[usp_RestorePointInTime]` → Restore execution engine
-- `[cfg].[usp_ValidatePitrCanary]` → Recovery validation engine
-- `[cfg].[usp_BackupDatabase]` → Log backup generation for test boundaries
-- `[dbo].[PitrCanary]` → Logical validation artifact table
+- [`[cfg].[usp_RestorePointInTime]`](../../docs/procedures/usp_RestorePointInTime.md) → Restore execution engine
+- [`[cfg].[usp_ValidatePitrCanary]`](../../docs/procedures/usp_ValidatePitrCanary.md) → Recovery validation engine
+- [`[cfg].[usp_BackupDatabase]`](../../docs/procedures/usp_BackupDatabase.md) → Log backup generation for test boundaries
+- [`[dbo].[PitrCanary]`](../../sql/01_Tables/dbo.PitrCanary.md) → Logical validation artifact table
 - `[log].[RestoreTestRun]` → Restore execution header telemetry
 - `[log].[RestoreStepExecution]` → Restore chain execution detail
 
