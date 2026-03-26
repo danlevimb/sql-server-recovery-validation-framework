@@ -2,7 +2,7 @@
 
 <p align="center">
 <a href="/README.md">Home</a> |
-<a href="/docs/architecture.md">Architecture</a> |
+<a href="../../sql/01_Tables.md">Tables</a> |
 <a href="/docs/telemetry.md">Telemetry</a> |
 <a href="/docs/restore-workflow.md">Restore Workflow</a>
 </p>
@@ -37,7 +37,7 @@ Validation procedures execute restore tests and verify recovery boundaries using
 
 <p align="center">
 <a href="/README.md">Home</a> |
-<a href="/docs/architecture.md">Architecture</a> |
+<a href="../../sql/01_Tables.md">Tables</a> |
 <a href="/docs/telemetry.md">Telemetry</a> |
 <a href="/docs/restore-workflow.md">Restore Workflow</a>
 </p>
