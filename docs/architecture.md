@@ -1,6 +1,5 @@
 <p align="center">
 <a href="README.md">Home</a> |
-<a href="docs/architecture.md">Architecture</a> |
 <a href="telemetry.md">Telemetry</a> |
 <a href="restore-workflow.md">Restore Workflow</a>
 </p>
@@ -9,7 +8,7 @@
 
 # Architecture
 
-## Overview
+- [Overview](/docs/architecture/overview.md)
 ## Ecosystem Context
 ## Architecture Diagram
 ## Core Components
