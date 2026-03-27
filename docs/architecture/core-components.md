@@ -7,7 +7,9 @@
 
 The framework is composed of a set of modular components organized into functional layers. Each layer is responsible for a specific aspect of the recovery validation process, enabling separation of concerns and flexible usage.
 
----
+<p align="center">
+  <img src="/diagrams/framework-architecture.png" width="900">
+</p>
 
 ### Orchestration Layer
 
