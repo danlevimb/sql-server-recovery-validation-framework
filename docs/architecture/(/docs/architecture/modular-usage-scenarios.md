@@ -27,7 +27,7 @@ The framework dynamically determines which components are required based on the 
 
 The process begins by identifying the most appropriate FULL backup:
 
-- The selected FULL must precede the recovery target (`STOPAT` or MARK)  
+- The selected FULL must precede the recovery target (`STOPAT` or `MARK`)  
 - It serves as the base for the entire restore chain  
 - Its `checkpoint_lsn` is used to validate compatibility with subsequent backups  
 
@@ -75,9 +75,9 @@ This validation ensures:
 
 The framework supports two types of recovery boundaries:
 
-Point-in-Time (STOPAT)
+Point-in-Time (`STOPAT`)
 The system identifies the log backup that contains the target timestamp
-Commit time boundaries are analyzed using sys.fn_dump_dblog
+Commit time boundaries are analyzed using `sys.fn_dump_dblog`
 The appropriate log is selected to ensure the target time is covered
 
 If necessary, the effective recovery point may be adjusted to the nearest valid commit boundary.
@@ -85,8 +85,8 @@ If necessary, the effective recovery point may be adjusted to the nearest valid 
 ---
 
 ### Marker-Based (`STOPBEFOREMARK`)
-The system uses msdb.dbo.logmarkhistory to locate the marked transaction
-The corresponding mark_lsn is retrieved
+The system uses `msdb.dbo.logmarkhistory` to locate the marked transaction
+The corresponding `mark_lsn` is retrieved
 The correct log backup containing the mark is selected
 
 This enables deterministic recovery to a specific business event.
@@ -106,6 +106,8 @@ These values are derived from `sys.fn_dump_dblog` and allow the system to:
 - Adjust the effective recovery boundary when necessary
 - Avoid invalid or partial restores
 
+---
+
 ### Deterministic Chain Construction
 
 By combining metadata and log analysis, the framework ensures that:
@@ -118,7 +120,7 @@ This eliminates ambiguity in restore operations and reduces reliance on manual i
 
 ---
 
-Summary
+### Summary
 
 Restore chain planning is a critical component of the framework, transforming backup metadata into a reliable and executable recovery sequence.
 
