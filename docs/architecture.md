@@ -10,6 +10,7 @@
 
 - [Overview](/docs/architecture/overview.md)
 - [Ecosystem Context](/docs/architecture/ecosystem-context.md)
+- [Scheduling Model](/docs/architecture/scheduling-model.md)
 - [Core Components](/docs/architecture/core-components.md)
 - [End-to-End Workflow](/docs/architecture/end-to-end-workflow.md)
 - [Modular Usage Scenarios](/docs/architecture/modular-usage-scenarios.md)
