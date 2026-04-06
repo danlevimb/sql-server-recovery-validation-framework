@@ -103,18 +103,18 @@ Returns a decision matrix including:
 ### Execution Mode
 
 Executes backups per database and generates telemetry records in:
-- [log].[BackupRun](../../sql/01_Tables/log.BackupRun.md)
+- [`[log].[BackupRun]`](../../sql/01_Tables/log.BackupRun.md)
 
 All executions are correlated via a shared CorrelationID.
 
 ## Related Components
-[`[cfg].[DatabasePolicy]`](../../sql/01_Tables/cfg.DatabasePolicy.md)
+- [`[cfg].[DatabasePolicy]`](../../sql/01_Tables/cfg.DatabasePolicy.md)
  → Defines inclusion and backup rules
-[`[cfg].[Tier]`](../../sql/01_Tables/cfg.Tier.md)
+- [`[cfg].[Tier]`](../../sql/01_Tables/cfg.Tier.md)
  → Defines frequency and RPO/RTO targets
-[`[cfg].[usp_BackupDatabase]`](../../docs/procedures/usp_BackupDatabase.md)
+- [`[cfg].[usp_BackupDatabase]`](../../docs/procedures/usp_BackupDatabase.md)
  → Executes individual database backups
-[`[log].[BackupRun]`](../../sql/01_Tables/log.BackupRun.md)
+- [`[log].[BackupRun]`](../../sql/01_Tables/log.BackupRun.md)
  → Stores execution telemetry
 
 ## Source Code
