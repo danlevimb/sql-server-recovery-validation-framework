@@ -108,7 +108,7 @@ EXEC cfg.usp_RestorePointInTime
     @StopBeforeMark = 'RT_20260406_121500';
 ```
 
-***Use case:***
+**Use case:**
 - Application release rollback
 - Recovery to a known safe state
 - Controlled rollback scenarios
