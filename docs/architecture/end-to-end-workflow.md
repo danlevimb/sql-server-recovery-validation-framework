@@ -80,7 +80,7 @@ This ensures a deterministic and valid restore chain.
 
 ### 6. Restore Execution
 
-The restore engine (`cfg.usp_RestorePointInTime`) executes the restore process:
+The restore engine ([`cfg.usp_RestorePointInTime`](../../docs/procedures/usp_RestorePointInTime.md)) executes the restore process:
 
 - Applies FULL → DIFF → LOG backups in sequence  
 - Uses recovery boundaries:
@@ -108,9 +108,9 @@ This step transforms restore execution into **deterministic validation**.
 
 All execution details are recorded in the telemetry layer:
 
-- Backup execution (`log.BackupRun`)  
-- Restore test execution (`log.RestoreTestRun`)  
-- Step-level execution trace (`log.RestoreStepExecution`)  
+- Backup execution ([`log.BackupRun`](../../sql/01_Tables/log.BackupRun.md))  
+- Restore test execution ([`log.RestoreTestRun`](../../sql/01_Tables/log.RestoreTestRun.md))  
+- Step-level execution trace ([`log.RestoreStepExecution`](../../sql/01_Tables/log.RestoreStepExecution.md))  
 
 Captured data includes:
 
