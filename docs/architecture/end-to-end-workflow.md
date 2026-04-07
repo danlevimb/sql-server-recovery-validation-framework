@@ -5,23 +5,51 @@
 
 # End-to-End Workflow
 
-The framework executes a complete recovery validation cycle by orchestrating backup artifacts, restore logic, and data-level verification into a deterministic workflow.
+The framework executes a complete data protection and recovery validation cycle by combining **policy-driven backup orchestration**, **deterministic restore logic**, and **data-level validation**.
 
 ---
 
-### 1. Backup Generation
+### 1. Scheduling Trigger
 
-SQL Server Agent Jobs generate backup files according to the defined strategy:
+A SQL Server Agent Job executes the orchestration procedure at a fixed interval (e.g. every 5 minutes):
 
-- FULL backups (`.bak`)  
-- DIFFERENTIAL backups (`.bak`)  
-- TRANSACTION LOG backups (`.trn`)  
+- [`cfg.usp_RunScheduledBackups`](../../docs/procedures/usp_RunScheduledBackups.md)
 
-These backups are created using standardized procedures and stored in configured locations.
+The job itself does not contain logic; it acts as a **trigger mechanism** that activates the decision engine.
 
 ---
 
-### 2. Backup Storage
+### 2. Policy Evaluation (Decision Engine)
+
+The orchestration layer evaluates backup requirements dynamically:
+
+- Reads configuration from [`cfg.Tier`](../../sql/01_Tables/cfg.Tier.md) and [`cfg.DatabasePolicy`](../../sql/01_Tables/cfg.DatabasePolicy.md)  
+- Retrieves historical execution data from [`log.BackupRun`](../../sql/01_Tables/log.BackupRun.md)  
+- Determines whether FULL, DIFF, or LOG backups are due  
+- Applies precedence rules: **FULL > DIFF > LOG**  
+- Skips databases not eligible or already in execution  
+
+This step transforms static configuration into **runtime decisions**.
+
+---
+
+### 3. Backup Execution
+
+The framework executes backups at a per-database level using [`cfg.usp_BackupDatabase`](../../docs/procedures/usp_BackupDatabase.md).
+
+Optionally, batch execution can be performed using [`cfg.usp_BackupByTierAndType`](../../docs/procedures/usp_BackupByTierAndType.md).
+
+Backups include:
+
+- FULL (`.bak`)  
+- DIFFERENTIAL (`.bak`)  
+- TRANSACTION LOG (`.trn`)  
+
+Execution is correlated using a shared `CorrelationID`.
+
+---
+
+### 4. Backup Storage
 
 Backup files are written to logical storage paths defined by the framework:
 
@@ -29,11 +57,14 @@ Backup files are written to logical storage paths defined by the framework:
 - SECONDARY (optional mirror)  
 - RESTORE_TEST (used for validation scenarios)  
 
-Storage paths are resolved dynamically through the configuration layer.
+Storage paths are resolved dynamically via:
+
+- [`cfg.usp_GetActiveBasePath`](../../docs/procedures/usp_GetActiveBasePath.md)  
+- [`cfg.usp_GetRestoreTestBasePath`](../../docs/procedures/usp_GetRestoreTestBasePath.md)  
 
 ---
 
-### 3. Metadata Collection
+### 5. Metadata Collection
 
 The framework retrieves backup and transaction metadata from SQL Server system sources:
 
@@ -51,66 +82,69 @@ This metadata is used to:
 
 ---
 
-### 4. Scenario Definition (Orchestration)
+### 6. Scenario Definition (Orchestration)
 
-The orchestration layer ([`cfg.usp_RunRestoreTests`](../../docs/procedures/usp_RunRestoreTests.md)) defines the recovery scenario:
+The orchestration layer defines the recovery validation scenario using [`cfg.usp_RunRestoreTests`](../../docs/procedures/usp_RunRestoreTests.md)
+
+This step:
 
 - Selects the source database  
-- Defines the target restore mode:
+- Defines recovery mode:
   - Point-in-time (`STOPAT`)  
   - Marker-based (`STOPBEFOREMARK`)  
-- Optionally inserts canary records and marked transactions  
-
-This step establishes the intended recovery boundary.
+- Inserts canary records and marked transactions  
 
 ---
 
-### 5. Restore Chain Planning
+### 7. Restore Chain Planning
 
-The framework determines the correct sequence of backup files required for the restore:
+The framework determines the correct sequence of backup files using [`cfg.usp_GetLatestBackupFiles`](../../docs/procedures/usp_GetLatestBackupFiles.md)
 
-- Selects the appropriate FULL backup  
-- Optionally selects a matching DIFFERENTIAL backup  
-- Identifies the required TRANSACTION LOG sequence  
-- Validates LSN continuity across all files  
+This includes:
 
-This ensures a deterministic and valid restore chain.
+- Selecting the appropriate FULL backup  
+- Matching DIFFERENTIAL backup (if applicable)  
+- Identifying required LOG sequence  
+- Validating LSN continuity  
 
 ---
 
-### 6. Restore Execution
+### 8. Restore Execution
 
-The restore engine ([`cfg.usp_RestorePointInTime`](../../docs/procedures/usp_RestorePointInTime.md)) executes the restore process:
+The restore engine reconstructs the database state using [`cfg.usp_RestorePointInTime`](../../docs/procedures/usp_RestorePointInTime.md)
 
-- Applies FULL → DIFF → LOG backups in sequence  
+This step:
+
+- Applies FULL → DIFF → LOG sequence  
 - Uses recovery boundaries:
-  - `STOPAT` for time-based recovery  
-  - `STOPBEFOREMARK` for marker-based recovery  
-- Restores the database into an isolated target environment  
-
-At this stage, the database is reconstructed to the intended state.
+  - `STOPAT`  
+  - `STOPBEFOREMARK`  
+- Restores into an isolated target environment  
 
 ---
 
-### 7. Data-Level Validation
+### 9. Data-Level Validation
 
-The validation layer verifies the correctness of the restore operation:
+The validation layer verifies recovery correctness:
 
-- Evaluates canary records inserted before and after the recovery boundary  
-- Confirms whether expected data is present or excluded  
-- Determines if the restore reflects the intended point in time  
+- [`cfg.usp_ValidatePitrCanary`](../../docs/procedures/usp_ValidatePitrCanary.md)  
+- [`dbo.PitrCanary`](../../sql/01_Tables/dbo.PitrCanary.md)
 
-This step transforms restore execution into **deterministic validation**.
+This step:
+
+- Evaluates canary records before and after the recovery boundary  
+- Confirms expected data presence or absence  
+- Validates that the restore reflects the intended point in time  
 
 ---
 
-### 8. Telemetry Capture
+### 10. Telemetry Capture
 
-All execution details are recorded in the telemetry layer:
+All execution details are recorded:
 
-- Backup execution ([`log.BackupRun`](../../sql/01_Tables/log.BackupRun.md))  
-- Restore test execution ([`log.RestoreTestRun`](../../sql/01_Tables/log.RestoreTestRun.md))  
-- Step-level execution trace ([`log.RestoreStepExecution`](../../sql/01_Tables/log.RestoreStepExecution.md))  
+- Backup execution → [`log.BackupRun`](../../sql/01_Tables/log.BackupRun.md)  
+- Restore execution (header) → [`log.RestoreTestRun`](../../sql/01_Tables/log.RestoreTestRun.md)  
+- Step-level trace (detail) → [`log.RestoreStepExecution`](../../sql/01_Tables/log.RestoreStepExecution.md)  
 
 Captured data includes:
 
@@ -121,14 +155,14 @@ Captured data includes:
 
 ---
 
-### 9. Recovery Evidence and Analysis
+### 11. Recovery Evidence and Analysis
 
 The framework produces actionable evidence of recoverability:
 
-- Verification of successful restore operations  
-- Confirmation of correct recovery boundaries  
-- Measurement of practical recovery time  
-- Traceability of execution steps and errors  
+- Verified restore capability  
+- Confirmed recovery boundaries  
+- Measured recovery time (RTO)  
+- Traceable execution history  
 
 This enables:
 
@@ -140,6 +174,13 @@ This enables:
 
 ### Summary
 
-Through this workflow, the framework ensures that backup processes are not only executed, but also continuously validated.
+The framework transforms backup operations into a **continuous validation system**.
 
-Each execution cycle transforms backup artifacts into **verified recovery capability**, supported by traceable evidence and measurable outcomes.
+Instead of assuming recoverability, each cycle:
+
+- Evaluates backup needs  
+- Executes protection actions  
+- Validates recovery capability  
+- Produces measurable evidence  
+
+This ensures that data protection is not only implemented, but **continuously verified and trusted**.
