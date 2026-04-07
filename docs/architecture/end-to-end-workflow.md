@@ -53,7 +53,7 @@ This metadata is used to:
 
 ### 4. Scenario Definition (Orchestration)
 
-The orchestration layer (`cfg.usp_RunRestoreTests`) defines the recovery scenario:
+The orchestration layer ([`cfg.usp_RunRestoreTests`](../../docs/procedures/usp_RunRestoreTests.md)) defines the recovery scenario:
 
 - Selects the source database  
 - Defines the target restore mode:
