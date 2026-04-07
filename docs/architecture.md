@@ -1,5 +1,5 @@
 <p align="center">
-<a href="README.md">Home</a> |
+<a href="../README.md">Home</a> |
 <a href="telemetry.md">Telemetry</a> |
 <a href="restore-workflow.md">Restore Workflow</a>
 </p>
