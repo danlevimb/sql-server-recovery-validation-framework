@@ -5,26 +5,59 @@
 
 # Core Components
 
-The framework is composed of a set of modular components organized into functional layers. Each layer is responsible for a specific aspect of the recovery validation process, enabling separation of concerns and flexible usage.
+The framework is composed of a set of modular components organized into functional layers. Each layer is responsible for a specific aspect of the backup and recovery validation process, enabling separation of concerns and flexible usage.
 
 <p align="center">
   <img src="/diagrams/framework-architecture.png" width="900">
 </p>
 
+---
+
 ### Orchestration Layer
 
-The orchestration layer coordinates end-to-end restore validation scenarios.
+The orchestration layer coordinates both **backup scheduling** and **recovery validation workflows**, acting as the primary entry point for automated operations.
 
+| Feature | Description |
+|---------|-------------|
+| Policy-driven execution | Backup behavior is controlled entirely by configuration (cfg.Tier, cfg.DatabasePolicy) |
+| Dynamic adaptability | Changes in frequency or inclusion rules take effect immediately without modifying jobs |
+| Deterministic behavior | Decisions are based on actual execution history (log.BackupRun), not static schedules |
+| Reduced operational complexity | A single job replaces multiple scheduled backup jobs |
+| Efficient execution | Backups run only when required, avoiding redundant operations |
+
+- `[cfg].[usp_RunScheduledBackups]`  
 - `[cfg].[usp_RunRestoreTests]`
 
-This component is responsible for:
+This layer is responsible for:
 
-- Selecting databases and defining recovery scenarios  
+- Evaluating backup policies and determining required operations  
+- Triggering backup execution based on dynamic conditions  
+- Selecting databases and defining recovery validation scenarios  
 - Generating canary records and marked transactions  
-- Triggering restore execution workflows  
-- Coordinating validation and telemetry capture  
+- Coordinating restore execution workflows  
+- Orchestrating validation and telemetry capture  
 
-It acts as the central entry point for automated recovery validation and enables full pipeline execution.
+It acts as the central control plane for both **data protection** and **recoverability validation**.
+
+---
+
+### Backup Execution Layer
+
+The backup execution layer is responsible for performing backup operations at both **granular** and **batch levels**.
+
+- `[cfg].[usp_BackupDatabase]`  
+- `[cfg].[usp_BackupByTierAndType]`
+
+This layer provides:
+
+- Execution of FULL, DIFF, and LOG backups per database  
+- Batch execution of backups grouped by Tier and type  
+- Support for mirrored backups (PRIMARY / SECONDARY paths)  
+- Backup verification (`VERIFYONLY`) and integrity options  
+- Compression and checksum support  
+- Correlated execution across multiple databases  
+
+It represents the operational layer that materializes backup decisions into physical backup artifacts.
 
 ---
 
@@ -71,13 +104,16 @@ The configuration layer defines the policies and parameters that drive framework
 
 - `[cfg].[Tier]`  
 - `[cfg].[DatabasePolicy]`  
-- `[cfg].[BackupPaths]`
+- `[cfg].[BackupPaths]`  
+- `[cfg].[usp_GetActiveBasePath]`  
+- `[cfg].[usp_GetRestoreTestBasePath]`
 
 This layer enables:
 
 - Tier-based backup and recovery strategies (RPO / RTO driven)  
 - Database-level inclusion and backup configuration  
 - Dynamic resolution of storage paths  
+- Centralized path abstraction for backup and restore operations  
 - Policy-driven execution without hardcoded logic  
 
 It provides the control plane for the framework.
@@ -107,8 +143,9 @@ It acts as the observability layer of the framework, providing evidence for reco
 
 These components operate together as a coordinated pipeline:
 
-- The orchestration layer initiates recovery validation scenarios  
-- The restore execution layer reconstructs and applies the restore chain  
+- The orchestration layer evaluates policies and initiates execution  
+- The backup execution layer generates backup artifacts  
+- The restore execution layer reconstructs and applies restore chains  
 - The validation layer verifies recovery correctness at the data level  
 - The telemetry layer records execution and validation evidence  
 - The configuration layer governs behavior across all components  
