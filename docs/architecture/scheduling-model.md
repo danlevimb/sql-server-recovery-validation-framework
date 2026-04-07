@@ -22,20 +22,10 @@ All decision-making is performed dynamically inside the procedure based on metad
 ---
 
 ### Execution Flow
+<p align="center">
+  <img src="/diagrams/scheduling_model.png" width="900">
+</p>
 
-```text
-SQL Server Agent Job (every 5 minutes)
-        ↓
-cfg.usp_RunScheduledBackups   ← Decision Engine
-        ↓
-Decision Matrix (#Decision)
-        ↓
-Execution Queue (#Execution)
-        ↓
-cfg.usp_BackupDatabase        ← Execution Layer
-        ↓
-log.BackupRun                 ← Telemetry
-```
 ---
 
 ### Behavior Model
