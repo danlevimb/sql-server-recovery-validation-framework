@@ -1,5 +1,5 @@
 <p align="center">
-<a href="README.md">Home</a> |
+<a href="../../README.md">Home</a> |
 <a href="../architecture.md">Back</a>
 </p>
 
@@ -17,16 +17,10 @@ The framework is composed of a set of modular components organized into function
 
 The orchestration layer coordinates both **backup scheduling** and **recovery validation workflows**, acting as the primary entry point for automated operations.
 
-| Feature | Description |
-|---------|-------------|
-| Policy-driven execution | Backup behavior is controlled entirely by configuration (cfg.Tier, cfg.DatabasePolicy) |
-| Dynamic adaptability | Changes in frequency or inclusion rules take effect immediately without modifying jobs |
-| Deterministic behavior | Decisions are based on actual execution history (log.BackupRun), not static schedules |
-| Reduced operational complexity | A single job replaces multiple scheduled backup jobs |
-| Efficient execution | Backups run only when required, avoiding redundant operations |
-
-- `[cfg].[usp_RunScheduledBackups]`  
-- `[cfg].[usp_RunRestoreTests]`
+| Procedures |
+|------------|
+|`[cfg].[usp_RunScheduledBackups]`  |
+| `[cfg].[usp_RunRestoreTests]`|
 
 This layer is responsible for:
 
@@ -45,8 +39,10 @@ It acts as the central control plane for both **data protection** and **recovera
 
 The backup execution layer is responsible for performing backup operations at both **granular** and **batch levels**.
 
-- `[cfg].[usp_BackupDatabase]`  
-- `[cfg].[usp_BackupByTierAndType]`
+| Procedures |
+|------------|
+| `[cfg].[usp_BackupDatabase]`  |
+| `[cfg].[usp_BackupByTierAndType]`|
 
 This layer provides:
 
@@ -65,8 +61,10 @@ It represents the operational layer that materializes backup decisions into phys
 
 The restore execution layer is responsible for reconstructing and executing restore chains.
 
-- `[cfg].[usp_RestorePointInTime]`  
-- `[cfg].[usp_GetLatestBackupFiles]`
+| Procedures |
+|------------|
+| `[cfg].[usp_RestorePointInTime]`  |
+| `[cfg].[usp_GetLatestBackupFiles]` |
 
 This layer provides:
 
@@ -84,8 +82,9 @@ It represents the core engine that transforms backup artifacts into a restored d
 
 The validation layer verifies that the restored database state matches the intended recovery boundary.
 
-- `[cfg].[usp_ValidatePitrCanary]`  
-- `[dbo].[PitrCanary]`
+| Procedures | Tables |
+|------------|--------|
+| `[cfg].[usp_ValidatePitrCanary]`  | `[dbo].[PitrCanary]` |
 
 This layer is responsible for:
 
@@ -102,11 +101,12 @@ This layer ensures that restore success is evaluated not only technically, but f
 
 The configuration layer defines the policies and parameters that drive framework behavior.
 
-- `[cfg].[Tier]`  
-- `[cfg].[DatabasePolicy]`  
-- `[cfg].[BackupPaths]`  
-- `[cfg].[usp_GetActiveBasePath]`  
-- `[cfg].[usp_GetRestoreTestBasePath]`
+| Procedures | Tables |
+|------------|--------|
+| `[cfg].[usp_GetActiveBasePath]` | `[cfg].[Tier]`  |
+| `[cfg].[usp_GetRestoreTestBasePath]` | `[cfg].[DatabasePolicy]`  |
+| | `[cfg].[BackupPaths]`  |
+
 
 This layer enables:
 
@@ -124,9 +124,11 @@ It provides the control plane for the framework.
 
 The telemetry layer captures execution data, enabling traceability, auditing, and analysis.
 
-- `[log].[BackupRun]`  
-- `[log].[RestoreTestRun]`  
-- `[log].[RestoreStepExecution]`
+| Tables |
+|------------|
+| `[log].[BackupRun]`  |
+| `[log].[RestoreTestRun]`  |
+| `[log].[RestoreStepExecution]`|
 
 This layer records:
 
