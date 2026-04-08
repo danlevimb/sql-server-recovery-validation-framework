@@ -7,17 +7,13 @@
 
 This section demonstrates practical usage scenarios of the framework across its main operational stages:
 
-**a) Backup Stage**
-
-**b) Restore Stage**
-
-**c) Validation Stage**
+**Backup → Restore → Validation**
 
 Each example reflects real-world situations where the framework can be applied independently or as part of an integrated workflow.
 
 ---
 
-# a) Backup Stage
+# ***Backup Stage***
 
 ### 1. Batch Backup Execution by Tier
 
@@ -68,7 +64,7 @@ EXEC cfg.usp_RunScheduledBackups;
 
 ---
 
-# b) Restore Stage
+# ***Restore Stage***
 
 ### 4. Full Restore Validation Scenario
 
@@ -117,7 +113,7 @@ EXEC cfg.usp_RestorePointInTime
 
 --- 
 
-# c) Validation Stage
+# ***Validation Stage***
 
 ### 7. Canary-Based Validation (Integrated)
 
@@ -150,7 +146,7 @@ EXEC cfg.usp_ValidatePitrCanary
 
 ---
 
-#Advanced Scenarios
+# ***Advanced Scenarios***
 
 ### 9. Recovery After Critical Data Corruption
 
@@ -205,8 +201,8 @@ SELECT * FROM log.RestoreStepExecution ORDER BY RestoreRunID, StepOrder;
 
 The framework supports multiple usage patterns:
 
-Automated operation via policy-driven scheduling
-Manual execution for targeted scenarios
-Validation workflows for continuous recovery assurance
+- Automated operation via policy-driven scheduling
+- Manual execution for targeted scenarios
+- Validation workflows for continuous recovery assurance
 
 Each component can be used independently or combined into a complete data protection and recovery validation pipeline.
