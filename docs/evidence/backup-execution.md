@@ -40,33 +40,26 @@ EXEC cfg.usp_RunScheduledBackups
     @Debug = 1;
 ```
 
-## Expected Behavior
+### Expected Behavior
 - The procedure evaluates all databases
 - Determines which backup type is due
 - Returns a decision matrix without executing backups
 
-🔍 Evidence: Decision Output
+🔍 Evidence: SSMS result showing decision output
 
 <p align="center">
-  <img src="/images/Backup_Execution_Evidence_Step1.JPG" width="900">
+  <img src="images/Backup_Execution_Evidence_Step1.JPG" width="900">
 </p>
 
-
-
-👉 [INSERT SCREENSHOT HERE]
-
-SSMS result showing:
+### Key Columns:
 - DatabaseName
 - SelectedBackupType
 - DecisionReason
 - LastFullAt / LastLogAt
 
-## Interpretation
-
-Example:
-
+### Interpretation
 - `LabCriticalDB` → LOG due
-- `TestCDC` → LOG due
+- `TestCDC` → skipped Last log created at 09:50 am (Execution time: 10:05 am.)
 - `WideWorldImporters` → skipped (SIMPLE recovery model)
 
 This confirms that:
@@ -84,7 +77,7 @@ EXEC cfg.usp_RunScheduledBackups
     @Debug = 1;
 ```
 
-## Expected Behavior
+### Expected Behavior
 - Only databases with due backups are processed
 - Backup type is selected per database
 - Each execution is grouped by CorrelationID
@@ -95,30 +88,32 @@ The framework generates backup files in configured storage paths.
 
 🔍 Evidence: File System Output
 
-👉 [INSERT SCREENSHOT HERE]
-Folder showing generated files (.bak / .trn)
+<p align="center">
+  <img src="images/Backup_Execution_Evidence_Step3.JPG" width="900">
+</p>
 
-Focus on:
+### Focus on:
 
-File naming convention
-Timestamp consistency
-Presence of LOG backups every ~15 minutes
-Interpretation
+- File naming convention
+- Timestamp consistency
+- Presence of LOG backups every ~15 minutes
+
+### Interpretation
 
 Observed behavior:
-
-LOG backups follow a stable cadence (15-minute intervals)
-FULL backups do not disrupt LOG rhythm
-Backup files are consistently generated
+- LOG backups follow a stable cadence (15-minute intervals)
+- FULL backups do not disrupt LOG rhythm
+- Backup files are consistently generated
 
 This demonstrates that:
+- The scheduler preserves operational cadence
+- Backup execution is aligned with RPO objectives
 
-The scheduler preserves operational cadence
-Backup execution is aligned with RPO objectives
-Step 4 — Telemetry Verification
+# Step 4 — Telemetry Verification
 
 Validate execution through telemetry tables.
 
+```sql
 SELECT TOP (20)
     BackupRunID,
     DatabaseName,
@@ -130,20 +125,25 @@ SELECT TOP (20)
     PrimaryFile
 FROM log.BackupRun
 ORDER BY BackupRunID DESC;
+```
+
 🔍 Evidence: Telemetry Output
 
-👉 [INSERT SCREENSHOT HERE]
+<p align="center">
+  <img src="images/Backup_Execution_Evidence_Step4.JPG" width="900">
+</p>
+
 SSMS result showing BackupRun entries
 
-Interpretation
+### Interpretation
 
 Key observations:
+- Multiple databases share the same CorrelationID → single scheduler execution
+- Execution timestamps are consistent with scheduler trigger
+- BackupType reflects correct decision logic (FULL / DIFF / LOG)
+- Succeeded = 1 confirms successful execution
 
-Multiple databases share the same CorrelationID → single scheduler execution
-Execution timestamps are consistent with scheduler trigger
-BackupType reflects correct decision logic (FULL / DIFF / LOG)
-Succeeded = 1 confirms successful execution
-Step 5 — Correlation Analysis
+# Step 5 — Correlation Analysis
 
 Each scheduler execution generates a unique CorrelationID.
 
