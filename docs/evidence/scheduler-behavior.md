@@ -36,9 +36,10 @@ EXEC cfg.usp_RunScheduledBackups
     @Debug = 1;
 ```
 ---
-[Scenario 1 — No Backup Due](scheduler-behavior-1.md)
-[Scenario 2 — LOG Backup Due](scheduler-behavior-2.md)
---- 
+
+  - [Scenario 1 — No Backup Due](scheduler-behavior-1.md)
+  - [Scenario 2 — LOG Backup Due](scheduler-behavior-2.md)
+
 
 # Scenario 3 — FULL Backup Due
 ### Full backup frequency threshold has been reached.
