@@ -36,7 +36,7 @@ EXEC cfg.usp_RunScheduledBackups
     @Debug = 1;
 ```
 ---
-[Scenario 1 — No Backup Due](scheduler-behavior.md)
+[Scenario 1 — No Backup Due](scheduler-behavior-1.md)
 
 
 --- 
