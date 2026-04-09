@@ -40,27 +40,14 @@ EXEC cfg.usp_RunScheduledBackups
   - [Scenario 1 — No Backup Due](scheduler-behavior-1.md)
   - [Scenario 2 — LOG Backup Due](scheduler-behavior-2.md)
   - [Scenario 3 — FULL Backup Due](scheduler-behavior-3.md)
-  - [Scenario 4 — DIFF Backup Due](scheduler-behavior-3.md)
-
+  - [Scenario 4 — DIFF Backup Due](scheduler-behavior-4.md)
+  - [Scenario 5 — Recovery Model Constraint](scheduler-behavior-5.md)
+  - 
 --- 
 
 
 
-# Scenario 5 — Recovery Model Constraint
-### Database is configured with SIMPLE recovery model.
 
-### 🔍 Evidence
-  - `recovery_model_desc = SIMPLE`
-  - `SelectedBackupType = NULL`
-
-<p align="center">
-  <img src="../../docs/evidence/images/Scenario5_RecoveryModelConstraint.jpg" width="900">
-</p>
-
-### Interpretation
-  - LOG backups are correctly skipped
-  - Recovery model rules are enforced
-  - No invalid operations are attempted
 
 # Scenario 6 — FULL Does Not Reset LOG Cadence
 ## A FULL backup is executed, followed shortly by a scheduler cycle.
