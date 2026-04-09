@@ -26,7 +26,7 @@ The scheduler operates under a **trigger-based model**:
 - The procedure evaluates all databases  
 - Decisions are made dynamically using:
   - Configuration ([`[cfg].[Tier]`](../../sql/01_Tables/cfg.Tier.md), `cfg.DatabasePolicy`)  
-  - Execution history (`log.BackupRun`)  
+  - Execution history ([`[log].[BackupRun]`](../../sql/01_Tables/log.BackupRun.md))  
 
 ---
 
