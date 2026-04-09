@@ -20,7 +20,7 @@ The objective is to prove that:
 
 ## Validation Strategy
 
-The framework uses a **canary-based validation model**:
+The framework uses a [**canary-based validation model**](/references/canary-validation-model.md):
 
 - Insert a record BEFORE the recovery boundary  
 - Insert a MARK (transaction marker)  
