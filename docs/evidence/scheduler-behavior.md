@@ -46,7 +46,9 @@ EXEC cfg.usp_RunScheduledBackups
 ```
 
 ### 🔍 Evidence
-👉 [INSERT SCREENSHOT HERE]
+<p align="center">
+  <img src="../../docs/evidence/images/Scenario1_NoBackupDue.jpg" width="900">
+</p>
 
 Decision matrix showing:
   - SelectedBackupType = NULL
