@@ -64,7 +64,7 @@ Decision matrix showing:
 
 Transaction log frequency has been exceeded.
 
-🔍 Evidence
+### 🔍 Evidence
 Decision matrix showing:
   - `LogDue = 1`
   - `SelectedBackupType = LOG`
@@ -85,9 +85,12 @@ Decision matrix showing:
 Full backup frequency threshold has been reached.
 
 🔍 Evidence
-👉 [INSERT SCREENSHOT HERE]
     - `FullDue = 1`
     - `SelectedBackupType = FULL`
+
+<p align="center">
+  <img src="../../docs/evidence/images/Scenario3_FullBackupDue.jpg" width="900">
+</p>
 
 ### Interpretation
   - FULL backups take precedence over other types
