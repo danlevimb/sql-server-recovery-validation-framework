@@ -1,6 +1,6 @@
 <p align="center">
 <a href="../../../README.md">Home</a> |
-<a href="../architecture.md">Architecture</a>
+<a href="../restore-validation.md">Back</a>
 </p>
 
 # Canary-Based Recovery Validation Model
