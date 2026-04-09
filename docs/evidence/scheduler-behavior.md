@@ -105,10 +105,13 @@ Full backup frequency threshold has been reached.
 
 Differential backup is required based on effective baseline.
 
-🔍 Evidence
-👉 [INSERT SCREENSHOT HERE]
+### 🔍 Evidence
   - `DiffDue = 1`
   - `SelectedBackupType = DIFF`
+
+<p align="center">
+  <img src="../../docs/evidence/images/Scenario4_DIFFBackupDue.jpg" width="900">
+</p>
 
 ### Interpretation
   - DIFF is evaluated against the latest effective baseline (FULL or DIFF)
@@ -137,7 +140,7 @@ Database is configured with SIMPLE recovery model.
 
 A FULL backup is executed, followed shortly by a scheduler cycle.
 
-🔍 Evidence
+### 🔍 Evidence
   - Recent FULL backup exists
   - LOG backup 5 minutes after
   - LOG backup rate follows own timing rules
@@ -172,9 +175,7 @@ Multiple databases evaluated in a single execution cycle.
 
 Multiple backups executed within the same scheduler run.
 
-🔍 Evidence
-👉 [INSERT SCREENSHOT HERE]
-
+### 🔍 Evidence
 ```sql
 SELECT DatabaseName, BackupType, CorrelationID
 FROM log.BackupRun
@@ -211,15 +212,13 @@ A backup operation is currently running.
 
 Tier configuration or database policy is modified.
 
-### Example
-
 ```sql
 UPDATE cfg.Tier
 SET Log_Freq_Minutes = 10
 WHERE TierID = 0;
 ```
 
-🔍 Evidence
+### 🔍 Evidence
   - Scheduler adapts immediately
 <p align="center">
   <img src="../../docs/evidence/images/Scenario10_DynamicPolicyChange_1.jpg" width="900">
