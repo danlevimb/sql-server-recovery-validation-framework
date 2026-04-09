@@ -25,7 +25,7 @@ The scheduler operates under a **trigger-based model**:
 - A SQL Server Agent Job runs every 5 minutes  
 - The procedure evaluates all databases  
 - Decisions are made dynamically using:
-  - Configuration ([`[cfg].[Tier]`](../../sql/01Tables/cfg.Tier.md), `cfg.DatabasePolicy`)  
+  - Configuration ([`[cfg].[Tier]`](../../sql/01_Tables/cfg.Tier.md), `cfg.DatabasePolicy`)  
   - Execution history (`log.BackupRun`)  
 
 ---
