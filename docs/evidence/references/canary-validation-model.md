@@ -106,11 +106,9 @@ The model is grounded in native SQL Server capabilities:
 
 The concepts used in this model are based on official SQL Server documentation and established database recovery practices:
 
-Microsoft Docs — [*Restore a SQL Server Database to a Point in Time (Full Recovery Model)*](https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-a-sql-server-database-to-a-point-in-time-full-recovery-model?view=sql-server-ver17)
+  - Microsoft Docs — [*Restore a SQL Server Database to a Point in Time (Full Recovery Model)*](https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-a-sql-server-database-to-a-point-in-time-full-recovery-model?view=sql-server-ver17)
 
-Microsoft Docs — Point-in-Time Recovery (SQL Server)
-https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/restore-a-database-to-a-point-in-time
-Microsoft Docs — Transaction Log Architecture and Management Guide
+  - Microsoft Docs — [*The Transaction Log*](https://learn.microsoft.com/en-us/sql/relational-databases/logs/the-transaction-log-sql-server?view=sql-server-ver17)
 https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-log-architecture-and-management-guide
 Microsoft Docs — Backup and Restore of SQL Server Databases
 https://learn.microsoft.com/en-us/sql/relational-databases/backup-restore/back-up-and-restore-of-sql-server-databases
