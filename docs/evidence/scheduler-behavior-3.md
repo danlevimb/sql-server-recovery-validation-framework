@@ -1,3 +1,8 @@
+<p align="center">
+<a href="../README.md">Home</a> |
+<a href="scheduler-behavior.md">Back</a>
+</p>
+
 # Scenario 3 — FULL Backup Due
 ### Full backup frequency threshold has been reached.
 
