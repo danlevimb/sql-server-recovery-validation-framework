@@ -45,23 +45,11 @@ EXEC cfg.usp_RunScheduledBackups
   - [Scenario 6 — FULL Does Not Reset LOG Cadence](scheduler-behavior-6.md)
   - [Scenario 7 — Multiple Databases, Independent Decisions](scheduler-behavior-7.md)
   - [Scenario 8 — Correlation Across Execution](scheduler-behavior-8.md)
-
+  - [Scenario 9 — Backup Already in Progress](scheduler-behavior-9.md)
+  - 
 --- 
 
-# Scenario 9 — Backup Already in Progress
-### A backup operation is currently running.
 
-### 🔍 Evidence
-  - Database is skipped
-
-<p align="center">
-  <img src="../../docs/evidence/images/Scenario9_BackupAlreadyinProgress.jpg" width="900">
-</p>
-
-### Interpretation
-  - The scheduler avoids overlapping operations
-  - Concurrency control is enforced
-  - System stability is preserved
 
 # Scenario 10 — Dynamic Policy Change
 ### Tier configuration or database policy is modified.
