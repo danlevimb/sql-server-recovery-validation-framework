@@ -44,24 +44,12 @@ EXEC cfg.usp_RunScheduledBackups
   - [Scenario 5 — Recovery Model Constraint](scheduler-behavior-5.md)
   - [Scenario 6 — FULL Does Not Reset LOG Cadence](scheduler-behavior-6.md)
   - [Scenario 7 — Multiple Databases, Independent Decisions](scheduler-behavior-7.md)
-
+  - [Scenario 8 — Correlation Across Execution](scheduler-behavior-7.md)
 
 --- 
 
 
 
-# Scenario 8 — Correlation Across Execution
-### Multiple backups executed within the same scheduler run.
-
-### 🔍 Evidence
-```sql
-SELECT DatabaseName, BackupType, CorrelationID
-FROM log.BackupRun
-ORDER BY StartedAt DESC;
-```
-<p align="center">
-  <img src="../../docs/evidence/images/Scenario8_CorrelationAcrossExecution.jpg" width="900">
-</p>
 
 ### Interpretation
   - All operations share a common CorrelationID
