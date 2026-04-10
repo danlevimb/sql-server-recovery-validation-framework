@@ -2,6 +2,7 @@
 <a href="../../README.md">Home</a> |
 <a href="scheduler-behavior.md">Back</a>
 </p>
+
 # Scenario 10 — Dynamic Policy Change
 ### Tier configuration or database policy is modified.
 
