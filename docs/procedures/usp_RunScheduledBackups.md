@@ -18,6 +18,8 @@ It analyzes database state, tier configuration, and historical backup activity t
 
 This procedure acts as the **decision engine** of the framework and executes backups at a **per-database level** by invoking [`[cfg].[usp_BackupDatabase]`](../../docs/procedures/usp_BackupDatabase.md).
 
+If you want to see how this procedure behaves in real time go [here](../evidence/scheduler-behavior.md).
+
 ## Responsibilities
 
 - Evaluate backup requirements per database based on policy and timing
