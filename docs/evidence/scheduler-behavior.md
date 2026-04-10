@@ -46,35 +46,9 @@ EXEC cfg.usp_RunScheduledBackups
   - [Scenario 7 — Multiple Databases, Independent Decisions](scheduler-behavior-7.md)
   - [Scenario 8 — Correlation Across Execution](scheduler-behavior-8.md)
   - [Scenario 9 — Backup Already in Progress](scheduler-behavior-9.md)
-  - 
+  - [Scenario 10 — Dynamic Policy Change](scheduler-behavior-10.md)
+
 --- 
-
-
-
-# Scenario 10 — Dynamic Policy Change
-### Tier configuration or database policy is modified.
-
-```sql
-UPDATE cfg.Tier
-SET Log_Freq_Minutes = 10
-WHERE TierID = 0;
-```
-
-### 🔍 Evidence
-  - Scheduler adapts immediately
-<p align="center">
-  <img src="../../docs/evidence/images/Scenario10_DynamicPolicyChange_1.jpg" width="900">
-</p>
-
-  - New frequency is applied without restart
-<p align="center">
-  <img src="../../docs/evidence/images/Scenario10_DynamicPolicyChange_2.jpg" width="900">
-</p>
-
-### Interpretation
-  - System is fully metadata-driven
-  - No job changes required
-  - Behavior adjusts dynamically
 
 # Key Observations
   - Decisions are made at runtime, not predefined
@@ -94,6 +68,3 @@ It ensures that:
   - System behavior remains predictable and traceable
 
 This transforms backup scheduling into an adaptive, policy-driven system aligned with real operational needs.
-
-
-
