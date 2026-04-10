@@ -4,7 +4,7 @@
 <a href="../examples/examples.md">Examples</a>
 </p>
 
-# Use Case — STOPAT Restore for User Incident Ticket
+# STOPAT Restore for User Incident Ticket
 
 ## Overview
 
