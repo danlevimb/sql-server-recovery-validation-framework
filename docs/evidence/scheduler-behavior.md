@@ -36,17 +36,17 @@ EXEC cfg.usp_RunScheduledBackups
     @Debug = 1;
 ```
 ---
-
-  - [Scenario 1 — No Backup Due](scheduler-behavior-1.md)
-  - [Scenario 2 — LOG Backup Due](scheduler-behavior-2.md)
-  - [Scenario 3 — FULL Backup Due](scheduler-behavior-3.md)
-  - [Scenario 4 — DIFF Backup Due](scheduler-behavior-4.md)
-  - [Scenario 5 — Recovery Model Constraint](scheduler-behavior-5.md)
-  - [Scenario 6 — FULL Does Not Reset LOG Cadence](scheduler-behavior-6.md)
-  - [Scenario 7 — Multiple Databases, Independent Decisions](scheduler-behavior-7.md)
-  - [Scenario 8 — Correlation Across Execution](scheduler-behavior-8.md)
-  - [Scenario 9 — Backup Already in Progress](scheduler-behavior-9.md)
-  - [Scenario 10 — Dynamic Policy Change](scheduler-behavior-10.md)
+# Scenarios
+  - [1 — No Backup Due](scheduler-behavior-1.md)
+  - [2 — LOG Backup Due](scheduler-behavior-2.md)
+  - [3 — FULL Backup Due](scheduler-behavior-3.md)
+  - [4 — DIFF Backup Due](scheduler-behavior-4.md)
+  - [5 — Recovery Model Constraint](scheduler-behavior-5.md)
+  - [6 — FULL Does Not Reset LOG Cadence](scheduler-behavior-6.md)
+  - [7 — Multiple Databases, Independent Decisions](scheduler-behavior-7.md)
+  - [8 — Correlation Across Execution](scheduler-behavior-8.md)
+  - [9 — Backup Already in Progress](scheduler-behavior-9.md)
+  - [10 — Dynamic Policy Change](scheduler-behavior-10.md)
 
 --- 
 
