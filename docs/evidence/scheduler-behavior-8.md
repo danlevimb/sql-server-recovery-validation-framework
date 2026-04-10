@@ -15,3 +15,8 @@ ORDER BY StartedAt DESC;
 <p align="center">
   <img src="../../docs/evidence/images/Scenario8_CorrelationAcrossExecution.jpg" width="900">
 </p>
+
+### Interpretation
+  - All operations share a common CorrelationID
+  - Execution grouping is preserved
+  - Traceability across operations is ensured
