@@ -44,7 +44,7 @@ EXEC cfg.usp_RunScheduledBackups
   - [Scenario 5 — Recovery Model Constraint](scheduler-behavior-5.md)
   - [Scenario 6 — FULL Does Not Reset LOG Cadence](scheduler-behavior-6.md)
   - [Scenario 7 — Multiple Databases, Independent Decisions](scheduler-behavior-7.md)
-  - [Scenario 8 — Correlation Across Execution](scheduler-behavior-7.md)
+  - [Scenario 8 — Correlation Across Execution](scheduler-behavior-8.md)
 
 --- 
 
