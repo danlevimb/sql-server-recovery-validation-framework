@@ -14,7 +14,7 @@ The objective is to recover a database to a known good state prior to an uninten
 
 This scenario represents a common real-world recovery request, such as:
 
-- accidental `UPDATE` without proper filtering  
+- accidental `UPDATE` without proper filtering (`WHERE`) 
 - unintended `DELETE` operation  
 - application logic error that modified data incorrectly  
 - user-reported data inconsistency at a known time window  
@@ -62,11 +62,11 @@ Restore the source database to a target database using a `STOPAT` value that rep
 
 This use case typically involves:
 
-- [`[cfg].[usp_RestorePointInTime]`](../procedures/usp_RestorePointInTime.md)
-- [`[cfg].[usp_GetLatestBackupFiles]`](../procedures/usp_GetLatestBackupFiles.md)
-- [`[cfg].[usp_GetRestoreTestBasePath]`](../procedures/usp_GetRestoreTestBasePath.md)
-- [`[log].[RestoreTestRun]`](../../sql/01_Tables/log.RestoreTestRun.md)
-- [`[log].[RestoreStepExecution]`](../../sql/01_Tables/log.RestoreStepExecution.md)
+- ⚙️ [`[cfg].[usp_RestorePointInTime]`](../procedures/usp_RestorePointInTime.md)
+- ⚙️ [`[cfg].[usp_GetLatestBackupFiles]`](../procedures/usp_GetLatestBackupFiles.md)
+- ⚙️ [`[cfg].[usp_GetRestoreTestBasePath]`](../procedures/usp_GetRestoreTestBasePath.md)
+- 📖 [`[log].[RestoreTestRun]`](../../sql/01_Tables/log.RestoreTestRun.md)
+- 📖 [`[log].[RestoreStepExecution]`](../../sql/01_Tables/log.RestoreStepExecution.md)
 
 ---
 
