@@ -19,7 +19,7 @@ This use case demonstrates a **real-world incident recovery scenario** involving
 - point-in-time recovery using STOPAT  
 - targeted data repair in production  
 
-The objective is to:
+### The objective is to:
 
 - identify the last known valid state  
 - restore a clean reference database  
@@ -47,49 +47,35 @@ This created a mixed dataset containing:
 ---
 
 ## Incident Ticket
+```text 
+🎫
+Incident ID:     INC-2026-0413-ORDERS
+Date/Hour:       13-Abr-26 12:25 p.m.  
+Environment:     Production  
+Service:         Order Management System  
+Reported by:     Business Operations  
+Severity:        High  
 
-### 🎫 Incident ID: INC-2026-0413-ORDERS
+SUMMARY:
+   Unexpected data corruption detected in order amounts affecting financial reporting.
 
-**Date/Hour:** 13-Abr-26 12:25 p.m.  
-**Environment:** Production  
-**Service:** Order Management System  
-**Reported by:** Business Operations  
-**Severity:** High  
+DETAILED DESCRIPTION:
+   The Business Operations team reported inconsistencies in order amounts within the production system. 
 
----
+   Several records in the `app.Orders` table show incorrect values, impacting downstream processes and reporting accuracy. The incident ocurred around 11:00 am.
 
-### Summary
-
-Unexpected data corruption detected in order amounts affecting financial reporting.
-
----
-
-### Detailed Description
-
-The Business Operations team reported inconsistencies in order amounts within the production system.
-
-Several records in the `app.Orders` table show incorrect values, impacting downstream processes and reporting accuracy.
-
----
-
-### Suspected Root Cause
-
-An unintended execution of a bulk update statement:
-
-```sql
-UPDATE app.Orders
-SET Amount = 0;
+SUSPECTED ROOT CAUSE:
+   An unintended execution of a bulk update statement:
+   sql UPDATE app.Orders SET Amount = 0;
 ```
 
 ### Detection Time
 
-The issue was detected approximately 30–40 minutes after the incident occurred.
-
 The user reported:
 
-> “The issue may have happened around 11:00 AM.”
+> “The incident ocurred around 11:00 am.”
 
-⚠️ This time is approximate and not reliable for recovery.
+⚠️ This time is a nearby starting point.
 
 ### Impact
 - Financial data inconsistency
@@ -117,15 +103,16 @@ The system must determine:
 ### Recovery Strategy
 
 A forensic, evidence-driven approach is used:
-1 Define initial incident window  
-2 Perform exploratory restores  
-3 Identify GOOD vs BAD states  
-4 Narrow the time boundary  
-5 Determine optimal STOPAT  
-6 Restore clean reference database  
-7 Compare datasets  
-8 Repair affected records  
-9 Validate final state  
+
+1 - Define initial incident window (10:00 am - 12:00 pm)
+2 - Perform exploratory restores  
+3 - Identify GOOD vs BAD states  
+4 - Narrow the time boundary  
+5 - Determine optimal STOPAT  
+6 - Restore clean reference database  
+7 - Compare datasets  
+8 - Repair affected records  
+9 - Validate final state  
 
 ### Validation of dataset values
 
@@ -136,20 +123,14 @@ SELECT TOP (50) *
 FROM app.Orders
 ORDER BY OrderCreatedAt DESC;
 ```
-What we see:
-
-- corrupted historical records
-- valid new inserts
-- OLD DATA → Amount = 0 ❌  
-- NEW DATA → Amount correct ✅
 
 ### STOPAT Selection Methodology
 
 We have an aproximate hour of incident (~11:00 am), we use that hour as a mid time real incident happened, so we determine STOPAT by doing
 
-1 exploratory restores.
-2 GOOD vs BAD validation
-3 iterative narrowing (binary search approach)
+1 - exploratory restores.
+2 - GOOD vs BAD validation
+3 - iterative narrowing (binary search approach)
 
 ### Exploratory Restore Process
 
@@ -189,7 +170,7 @@ We close the gap by testing the state GOOD vs BAD. If the result is good, we mov
 ### Final STOPAT
 `2026-04-13 10:25:10.250`
 
-This represents the most accurate good last known valid state before corruption for `app.Orders` if this is a mid-high transactional table
+This represents the most accurate good last known valid state before corruption for `app.Orders` if this is a mid-high transactional table.
 
 ### Data Comparison (Production vs Restored)
 ```sql
