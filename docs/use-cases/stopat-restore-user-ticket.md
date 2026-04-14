@@ -252,8 +252,6 @@ WHERE ISNULL(p.Amount,0) <> ISNULL(r.Amount,0);
   <img src="images/Final_Validation.JPG" width="900">
 </p>
 
-Expected result = 0
-
 ### Key Insights
  
  - User-reported time is unreliable
@@ -266,10 +264,10 @@ Expected result = 0
 
 This use case demonstrates a complete incident recovery workflow:
 
-forensic analysis
-point-in-time recovery
-data validation
-targeted repair
+- forensic analysis
+- point-in-time recovery
+- data validation
+- targeted repair
 
 It proves that backup systems must be complemented with deterministic recovery validation and repair strategies.
 
