@@ -158,7 +158,7 @@ The recovering process we use is:
 ```sql
 EXEC cfg.usp_RestorePointInTime
     @SourceDatabase = 'LabCriticalDB',
-    @TargetDatabase = 'LabCriticalDB_StopAt',
+    @TargetDatabase = 'LabCriticalDB_StopAt_T1',
     @StopAt = '2026-04-13 11:00:00.000',
     @DoCheckDB = 1,
     @ReplaceTarget = 1;
@@ -198,12 +198,15 @@ SELECT
     p.Amount AS ProductionAmount,
     r.Amount AS RestoredAmount
 FROM LabCriticalDB.app.Orders p
-JOIN LabCriticalDB_StopAt.app.Orders r
+JOIN LabCriticalDB_StopAt_T1.app.Orders r
     ON p.OrderID = r.OrderID
 WHERE ISNULL(p.Amount,0) <> ISNULL(r.Amount,0);
 ```
 
-📸 [INSERT SCREENSHOT]
+<p align="center">
+  <img src="images/Affected_Record_Comparison.JPG" width="900">
+</p>
+
 Affected records comparison
 
 Backup Before Repair
