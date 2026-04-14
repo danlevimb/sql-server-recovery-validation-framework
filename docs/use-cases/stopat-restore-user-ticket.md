@@ -202,14 +202,11 @@ JOIN LabCriticalDB_StopAt_T1.app.Orders r
     ON p.OrderID = r.OrderID
 WHERE ISNULL(p.Amount,0) <> ISNULL(r.Amount,0);
 ```
-
 <p align="center">
   <img src="images/Affected_Record_Comparison.JPG" width="900">
 </p>
 
-Affected records comparison
-
-Backup Before Repair
+### Backup Before Repair
 ```sql
 EXEC cfg.usp_BackupDatabase
     @DatabaseName = 'LabCriticalDB',
@@ -218,8 +215,9 @@ EXEC cfg.usp_BackupDatabase
     @WithChecksum = 1;
 ```
 
-📸 [INSERT SCREENSHOT]
-Backup execution evidence
+<p align="center">
+  <img src="images/Backup_Execution_Evidence.JPG" width="900">
+</p>
 
 ### Data Repair (Production)
 ```sql
@@ -228,7 +226,7 @@ BEGIN TRAN;
 UPDATE p
 SET p.Amount = r.Amount
 FROM LabCriticalDB.app.Orders p
-JOIN LabCriticalDB_StopAt.app.Orders r
+JOIN LabCriticalDB_StopAt_T1.app.Orders r
     ON p.OrderID = r.OrderID
 WHERE ISNULL(p.Amount,0) <> ISNULL(r.Amount,0);
 
@@ -237,27 +235,32 @@ SELECT @@ROWCOUNT AS RowsFixed;
 COMMIT;
 ```
 
-📸 [INSERT SCREENSHOT]
-Rows affected during repair
+<p align="center">
+  <img src="images/Rows_Affected_During_Repair.JPG" width="900">
+</p>
 
 ### Final Validation
 ```sql
 SELECT COUNT(*) AS RemainingDifferences
 FROM LabCriticalDB.app.Orders p
-JOIN LabCriticalDB_StopAt.app.Orders r
+JOIN LabCriticalDB_StopAt_T1.app.Orders r
     ON p.OrderID = r.OrderID
 WHERE ISNULL(p.Amount,0) <> ISNULL(r.Amount,0);
 ```
 
-📸 [INSERT SCREENSHOT]
+<p align="center">
+  <img src="images/Final_Validation.JPG" width="900">
+</p>
+
 Expected result = 0
 
 ### Key Insights
-    - User-reported time is unreliable
-    - Log backups capture events independently of perception
-    - Data corruption may coexist with valid data
-    - STOPAT must be determined through evidence
-    - Repair should be targeted, not destructive
+ 
+ - User-reported time is unreliable
+ - Log backups capture events independently of perception
+ - Data corruption may coexist with valid data
+ - STOPAT must be determined through evidence
+ - Repair should be targeted, not destructive
 
 ### Summary
 
