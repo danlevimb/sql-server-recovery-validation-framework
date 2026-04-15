@@ -28,7 +28,7 @@ This use case demonstrates a **real-world incident recovery scenario** involving
 
 ---
 
-## Business Context
+## Business context
 
 A data inconsistency was reported in the **Order Management System**, affecting financial values in the `app.Orders` table.
 
@@ -46,7 +46,7 @@ This created a mixed dataset containing:
 
 ---
 
-## Incident Ticket
+## Incident ticket
 ```text 
 🎫
 Incident ID:     INC-2026-0413-ORDERS
@@ -69,7 +69,7 @@ SUSPECTED ROOT CAUSE:
    sql UPDATE app.Orders SET Amount = 0;
 ```
 
-### Detection Time
+### Detection time
 
 The user reported:
 
@@ -82,7 +82,7 @@ The user reported:
 - Reporting inaccuracies
 - Potential downstream system impact
 
-### Requested Actions
+### Requested actions
    
 1 - Identify last valid data state  
 2 - Restore database to pre-incident point  
@@ -90,7 +90,7 @@ The user reported:
 4 - Perform controlled repair in production  
 5 - Validate data consistency  
 
-### Problem Statement
+### Problem statement
 
 The exact time of the incident is unknown.
 
@@ -100,7 +100,7 @@ The system must determine:
 - how to restore without affecting valid post-incident data
 - how to repair production safely
 
-### Recovery Strategy
+### Recovery strategy
 
 A forensic, evidence-driven approach is used:
 
@@ -114,7 +114,7 @@ A forensic, evidence-driven approach is used:
 8 - Repair affected records  
 9 - Validate final state  
 
-### Why Full Restore Was Not Used
+### Why Full-Restore was not used?
 
 A full database restore was not considered appropriate due to:
 
@@ -134,13 +134,13 @@ FROM app.Orders
 ORDER BY OrderCreatedAt DESC;
 ```
 
-### STOPAT Selection Methodology
+### STOPAT - Selection methodology
 
 The user-reported time (11:00 am) was used only as an initial reference point to define the investigation window. (10:00 am - 12:00 pm)
 
 The actual STOPAT value will be determined through an iterative process based on data validation, not user input, by doing:
 
-   1 - exploratory restores.  
+   1 - exploratory restores
    2 - GOOD vs BAD validation  
    3 - iterative narrowing (binary search approach)  
 
@@ -169,7 +169,7 @@ EXEC cfg.usp_RestorePointInTime
 We close the gap by testing the state GOOD vs BAD. If the result is good, we move forward in time, if result is bad, we move past in time. Always shorting the gap by the half of time. The results for this exercise are as follow:
 
 | Sequence | StopAt | Result |
-|-------|-------|--------|
+|----------|--------|--------|
 |1|	10:00:00.000	|[GOOD](images/ERP_10_00.JPG)|
 |2|	12:00:00.000	|[BAD](images/ERP_12_00.JPG)| 
 |3|   11:00:00.000   |[BAD](images/ERP_11_00.JPG)| 
@@ -209,9 +209,9 @@ GOOD STATE            INCIDENT               BAD STATE
 ### Final STOPAT
 `2026-04-13 10:25:10.250`
 
-This represents the most accurate good last known valid state before corruption for `app.Orders` if this is a mid-high transactional table.
+This represents the most accurate good last known valid state before corruption for `app.Orders`. Remember this is a mid-high transactional table.
 
-### Data Comparison (Production vs Restored)
+### Data comparison (Production vs Restored)
 ```sql
 SELECT 
     p.OrderID,
@@ -239,7 +239,7 @@ EXEC cfg.usp_BackupDatabase
   <img src="images/Backup_Execution_Evidence.JPG" width="900">
 </p>
 
-### Data Repair (Production)
+### Data repair (Production)
 ```sql
 BEGIN TRAN;
 
@@ -259,7 +259,7 @@ COMMIT;
   <img src="images/Rows_Affected_During_Repair.JPG" width="900">
 </p>
 
-### Final Validation
+### Final validation
 ```sql
 SELECT COUNT(*) AS RemainingDifferences
 FROM LabCriticalDB.app.Orders p
@@ -272,7 +272,7 @@ WHERE ISNULL(p.Amount,0) <> ISNULL(r.Amount,0);
   <img src="images/Final_Validation.JPG" width="900">
 </p>
 
-### Key Insights
+### Key insights
  
  - User-reported time is unreliable
  - Log backups capture events independently of perception
