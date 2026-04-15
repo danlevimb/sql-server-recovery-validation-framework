@@ -102,35 +102,21 @@ VALID STATE ───▶ [MARK] ───▶ RELEASE ───▶ BROKEN STATE
               STOPBEFOREMARK
 Marker Creation (Simulated)
 ```
-
+### Mark creation
 ```sql
 BEGIN TRAN Release_2026_04 WITH MARK N'Release_2026_04';
 
 -- Simulated release changes
 UPDATE app.Orders
-SET Amount = Amount * 1.15;
+SET Amount = Amount * 1;
 
 COMMIT;
 ```
+### Verify mark
+<p align="center">
+  <img src="images/Mark_Creation.JPG" width="900">
+</p>
 
-```sql
-SELECT mark_name, mark_time, database_name
-FROM msdb.dbo.logmarkhistory
-WHERE mark_name = 'Release_2026_04';
-```
-
-📸 [INSERT SCREENSHOT]
-
-Evidence — Post-Release State
-
-📸 [INSERT SCREENSHOT]
-
-SELECT TOP (50)
-    OrderID,
-    Amount,
-    OrderCreatedAt
-FROM app.Orders
-ORDER BY OrderCreatedAt DESC;
 
 Restore Execution
 EXEC cfg.usp_RestorePointInTime
