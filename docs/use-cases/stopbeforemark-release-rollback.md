@@ -175,21 +175,19 @@ DBG Procedure    =[cfg].[usp_RestorePointInTime]: SUCCESSFULLY RUN! IN 23.147 se
 
 ### Key Insights
 - Transaction marks provide logical recovery boundaries
-- STOPBEFOREMARK eliminates ambiguity present in time-based recovery
+- `STOPBEFOREMARK` eliminates ambiguity present in time-based recovery
 - This approach aligns database recovery with business events
 - It is ideal for release rollback scenarios
 
-### Why STOPBEFOREMARK Was Required
+### Why `STOPBEFOREMARK` was required
 
-Time-based recovery introduces approximation and uncertainty.
-
-Transaction mark-based recovery allows:
+Time-based recovery introduces approximation and uncertainty. Transaction mark-based recovery allows:
 
 - deterministic rollback
 - exact alignment with deployment boundaries
 - safer recovery in controlled operations
 
-### Integration with Release Process
+### Integration with Release process
 
 Transaction marks can be integrated into deployment workflows:
 
@@ -217,8 +215,8 @@ to achieve reliable and predictable recovery outcomes.
 
 ### Final Outcome
 
-✔ Release rollback successfully executed
-✔ Environment restored to pre-release state
-✔ No ambiguity in recovery boundary
-✔ Data integrity preserved
+✔ Release rollback successfully executed  
+✔ Environment restored to pre-release state  
+✔ No ambiguity in recovery boundary  
+✔ Data integrity preserved  
 
