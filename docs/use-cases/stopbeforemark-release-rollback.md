@@ -114,19 +114,30 @@ COMMIT;
 ```
 ### Verify mark
 <p align="center">
-  <img src="images/Mark_Creation.JPG" width="900">
+  <img src="images/Mark_Creation.jpg" width="900">
 </p>
 
+### Restore Execution
 
-Restore Execution
+```sql
+DECLARE @return_value INT, @RunID BIGINT;
+
 EXEC cfg.usp_RestorePointInTime
-    @SourceDatabase = 'LabCriticalDB',
-    @TargetDatabase = 'LabCriticalDB_StopBeforeMark',
+    @SourceDb = 'LabCriticalDB',
+    @TargetDB = 'LabCriticalDB_StopBeforeMark',
     @StopBeforeMark = 'Release_2026_04',
     @DoCheckDB = 1,
-    @ReplaceTarget = 1;
+    @ReplaceTarget = 1,
+    @Debug = 1,
+    @RunID = @RunID OUTPUT
 
-📸 [INSERT SCREENSHOT]
+SELECT @RunID AS N'@RunID'
+
+SELECT 'Return Value' = @return_value
+GO
+```
+
+
 
 Evidence — Restored State
 
