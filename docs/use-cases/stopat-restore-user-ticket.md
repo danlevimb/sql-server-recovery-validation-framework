@@ -4,7 +4,7 @@
 <a href="use-cases.md">Use Cases</a>
 </p>
 
-# Data Recovery for User incident Using STOPAT
+# Recover data updated accidentally using STOPAT
 
 ---
 
