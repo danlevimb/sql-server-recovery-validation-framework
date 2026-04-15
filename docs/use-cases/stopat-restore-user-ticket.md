@@ -155,15 +155,26 @@ This dual-state condition required selective repair instead of full rollback.
 
 ### Exploratory Restore Process
 
-The recovering process we use is:
+The recovering script used is:
 
 ```sql
-EXEC cfg.usp_RestorePointInTime
-    @SourceDatabase = 'LabCriticalDB',
-    @TargetDatabase = 'LabCriticalDB_StopAt_T1',
-    @StopAt = '2026-04-13 11:00:00.000',
-    @DoCheckDB = 1,
-    @ReplaceTarget = 1;
+DECLARE @return_value int,
+		@RunID bigint;
+
+EXEC	@return_value = [cfg].[usp_RestorePointInTime]
+		@SourceDB = LabcriticalDB, 
+		@TargetDB = LabCriticalDb_StopAt_T1,
+		@StopAtDate =N'2026-04-13 10:25:10.750',
+		@StopBeforeMark = NULL,
+		@DoCheckDB = 1,
+		@ReplaceTarget = 1,
+		@Debug = 1,
+		@RunId = @RunId OUTPUT
+
+SELECT @RunID as N'@RunID'
+
+SELECT 'Return Value' = @return_value
+GO
 ```
 
 We close the gap by testing the state GOOD vs BAD. If the result is good, we move forward in time, if result is bad, we move past in time. Always shorting the gap by the half of time. The results for this exercise are as follow:
