@@ -202,7 +202,7 @@ This use case demonstrates:
 
 ### Final Outcome
 
-✔ Missing records recovered
-✔ New data preserved
-✔ No full restore required
-✔ Data integrity restored
+✔ Missing records recovered  
+✔ New data preserved  
+✔ No full restore required  
+✔ Data integrity restored  
