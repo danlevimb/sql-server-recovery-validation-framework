@@ -4,7 +4,7 @@
 <a href="../examples/examples.md">Examples</a>
 </p>
 
-# Release rollback using transaction mark (STOPBEFOREMARK)
+# Release rollback using transaction mark
 
 ---
 
