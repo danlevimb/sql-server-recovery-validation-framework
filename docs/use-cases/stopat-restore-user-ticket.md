@@ -67,7 +67,6 @@ DETAILED DESCRIPTION:
 SUSPECTED ROOT CAUSE:
    An unintended execution of a bulk update statement:
    sql UPDATE app.Orders SET Amount = 0;
-```
 
 ### Detection time
 
@@ -82,13 +81,13 @@ The user reported:
 - Reporting inaccuracies
 - Potential downstream system impact
 
-### Requested actions
-   
-1 - Identify last valid data state  
-2 - Restore database to pre-incident point  
-3 - Identify affected records  
-4 - Perform controlled repair in production  
-5 - Validate data consistency  
+REQUESTED ACTIONS:
+	1 - Identify last valid data state  
+	2 - Restore database to pre-incident point  
+	3 - Identify affected records  
+	4 - Perform controlled repair in production  
+	5 - Validate data consistency  
+```
 
 ### Problem statement
 
