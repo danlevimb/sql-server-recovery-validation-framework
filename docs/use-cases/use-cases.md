@@ -35,7 +35,7 @@ These use cases demonstrate the framework’s ability to:
 
 | Approach | Description | Use Case |
 |--------|------------|--------|
-| STOPAT | Time-based recovery using iterative analysis | [Recover data after accidental update](stopat) |
-| STOPBEFOREMARK | Marker-based recovery aligned with logical events | Release rollback using transaction mark |
+| STOPAT | Time-based recovery using iterative analysis | [Recover data after accidental update](stopat-restore.md) |
+| STOPBEFOREMARK | Marker-based recovery aligned with logical events | [Release rollback using transaction mark](stopbeforemark-restore.md) |
 
 ---
