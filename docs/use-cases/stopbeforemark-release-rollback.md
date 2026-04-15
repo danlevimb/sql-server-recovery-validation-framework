@@ -168,7 +168,7 @@ DBG Procedure    =[cfg].[usp_RestorePointInTime]: SUCCESSFULLY RUN! IN 23.147 se
 ### Validate New state 
 
 <p align="center">
-  <img src="images/Mark_Applied.jpg" width="900">
+  <img src="images/Mark_Applied.JPG" width="900">
 </p>
 
 
