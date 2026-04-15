@@ -4,7 +4,7 @@
 <a href="use-cases.md">Use Cases</a>
 </p>
 
-# Recover data updated accidentally using a Restore - `STOPAT` backup
+# Recover data after accidental update (STOPAT)
 
 ---
 
