@@ -59,3 +59,136 @@ REQUESTED ACTION:
   - Recover missing records  
   - Preserve valid new data  
   - Restore dataset integrity  
+```
+
+### Problem Statement
+
+The system must:
+
+recover deleted records
+avoid restoring the entire database
+preserve valid new inserts
+ensure data integrity
+Recovery Strategy
+
+This approach uses:
+
+STOPAT + selective reintegration
+Timeline Visualization
+TIME ─────────────────────────────────────────▶
+
+VALID DATA ───▶ DELETE ───▶ DATA LOSS ───▶ NEW INSERTS
+
+                    ▲
+                    │
+                  STOPAT
+Incident Simulation
+
+📸 [INSERT SCREENSHOT]
+
+DELETE FROM app.Orders
+WHERE OrderCreatedAt < '2026-04-01';
+Evidence — Data Loss
+
+📸 [INSERT SCREENSHOT]
+
+SELECT COUNT(*) FROM app.Orders;
+Restore Reference Database
+EXEC cfg.usp_RestorePointInTime
+    @SourceDatabase = 'LabCriticalDB',
+    @TargetDatabase = 'LabCriticalDB_RestoreRef',
+    @StopAt = '2026-04-16 11:15:00',
+    @ReplaceTarget = 1;
+
+📸 [INSERT SCREENSHOT]
+
+Identify Missing Records
+SELECT r.*
+FROM LabCriticalDB_RestoreRef.app.Orders r
+LEFT JOIN LabCriticalDB.app.Orders p
+    ON p.OrderID = r.OrderID
+WHERE p.OrderID IS NULL;
+
+📸 [INSERT SCREENSHOT]
+
+Pre-Repair Safety Backup
+EXEC cfg.usp_BackupDatabase
+    @DatabaseName = 'LabCriticalDB',
+    @BackupType = 'LOG',
+    @WithCompression = 1,
+    @WithChecksum = 1;
+
+📸 [INSERT SCREENSHOT]
+
+Controlled Reintegration
+
+⚠️ This operation must:
+
+preserve identity values
+prevent concurrent inserts
+ensure data consistency
+BEGIN TRAN;
+
+-- Lock table to prevent concurrent inserts
+SELECT 1 FROM app.Orders WITH (TABLOCKX);
+
+SET IDENTITY_INSERT app.Orders ON;
+
+INSERT INTO app.Orders (
+    OrderID,
+    CustomerName,
+    Amount,
+    OrderCreatedAt
+)
+SELECT 
+    r.OrderID,
+    r.CustomerName,
+    r.Amount,
+    r.OrderCreatedAt
+FROM LabCriticalDB_RestoreRef.app.Orders r
+LEFT JOIN app.Orders p
+    ON p.OrderID = r.OrderID
+WHERE p.OrderID IS NULL;
+
+SET IDENTITY_INSERT app.Orders OFF;
+
+SELECT @@ROWCOUNT AS RowsRecovered;
+
+COMMIT;
+
+📸 [INSERT SCREENSHOT]
+
+Final Validation
+SELECT COUNT(*) AS MissingRecords
+FROM LabCriticalDB_RestoreRef.app.Orders r
+LEFT JOIN app.Orders p
+    ON p.OrderID = r.OrderID
+WHERE p.OrderID IS NULL;
+
+📸 [INSERT SCREENSHOT]
+
+Why Full Restore Was Not Used
+
+A full restore was not appropriate because:
+
+new valid records were created after the deletion
+restoring the entire database would cause data loss
+the objective was targeted recovery
+Key Insights
+Not all incidents require full restore
+Selective recovery minimizes risk
+Identity handling is critical in reintegration
+Table locking ensures consistency during repair
+Summary
+
+This use case demonstrates:
+
+selective data recovery
+non-destructive repair
+preservation of live system activity
+Final Outcome
+
+✔ Missing records recovered
+✔ New data preserved
+✔ No full restore required
+✔ Data integrity restored
