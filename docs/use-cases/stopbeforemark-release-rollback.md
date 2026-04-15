@@ -143,7 +143,6 @@ DBG Procedure =[cfg].[usp_RestorePointInTime]
 DBG Mode      =[STOPBEFOREMARK]
 DBG SourceDB  =[LabCriticalDB]
 DBG TargetDB  =[LabCriticalDB_StopBeforeMark]
-DBG Started at=[2026-04-14 15:57:08.008]
  
 DBG Stop Mark =[Release_2026_04]
 DBG Mark LSN  =[75000002576800512]
@@ -160,7 +159,6 @@ RESTORE LOG successfully processed 320 pages in 0.182 seconds (13.736 MB/sec).
 4.0: >>> SET DATABASE ACCES MULTI-USER >>> 
 4.1: >>> CHECK NEWLY-RESTORED DATABASE >>> 
  
-DBG Ended at     =[2026-04-14 15:57:31.1557538]
 DBG Procedure    =[cfg].[usp_RestorePointInTime]: SUCCESSFULLY RUN! IN 23.147 seconds.
 ------------------------------
 ```
@@ -192,7 +190,7 @@ Transaction marks can be integrated into deployment workflows:
 
 - pre-release mark creation
 - deployment execution
-- rollback capability via STOPBEFOREMARK
+- rollback capability via `STOPBEFOREMARK`
 
 This enables a robust and auditable release strategy.
 
