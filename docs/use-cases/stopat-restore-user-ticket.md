@@ -186,7 +186,7 @@ We close the gap by testing the state GOOD vs BAD. If the result is good, we mov
 |14|	10:25:12.000	|[BAD](images/ERP_10_25_12.JPG)|
 |15|	10:25:11.000	|[BAD](images/ERP_10_25_11.JPG)|
 |16|	10:25:10.500	|[GOOD](images/ERP_10_25_10_500.JPG)|
-|17|	10:25:10.250	|[GOOD](images/ERP_10_25_10_250.JPG)|
+|17|	10:25:10.750	|[BAD](images/ERP_10_25_10_750.JPG)|
 
 ### What happened?
 ```text
@@ -199,7 +199,7 @@ GOOD STATE            INCIDENT               BAD STATE
    │                                             │
    ▼                                             ▼
 
-10:25:10.250        ← STOPAT SELECTED        10:25:10.500
+10:25:10.500        ← STOPAT SELECTED        10:25:10.750
 
        ▲
        │
@@ -207,7 +207,7 @@ GOOD STATE            INCIDENT               BAD STATE
 ```
        
 ### Final STOPAT
-`2026-04-13 10:25:10.250`
+`2026-04-13 10:25:10.500`
 
 This represents the most accurate good last known valid state before corruption for `app.Orders`. Remember this is a mid-high transactional table.
 
