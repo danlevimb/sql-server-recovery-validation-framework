@@ -1,6 +1,7 @@
 <p align="center">
 <a href="/README.md">Home</a> |
-<a href="/sql/02_Procedures.md">Procedures</a>
+<a href="/sql/02_Procedures.md">Procedures</a> |
+<a href="/docs/architecture/core-components.md">Core components</a> |
 </p>
 
 # Tables
