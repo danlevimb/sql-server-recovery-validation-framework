@@ -79,11 +79,11 @@ These scenarios simulate **real production incidents**, not theoretical examples
 
 | Section | Description |
 |--------|------------|
-| [`Architecture`](docs/architecture.md) | Framework design and recovery strategies |
-| [`Evidence`]() | Execution proof (backups, restores, validation) |
-| [`Use cases`]() | Real-world recovery scenarios |
-| [`Procedures`]() | Core implementation stored procedures |
-| [`Tables`]() | Core implementation tables |
+| [Architecture](docs/architecture.md) | Framework design and recovery strategies |
+| [Evidence](docs/evidence/evidence.md) | Execution proof (backups, restores, validation) |
+| [`Use cases`](docs/use-cases/use-cases.md) | Real-world recovery scenarios |
+| [`Procedures`](sql/02_Procedures.md) | Core implementation stored procedures |
+| [`Tables`](sql/01_Tables.md) | Core implementation tables |
 
 ---
 
