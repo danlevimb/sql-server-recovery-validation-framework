@@ -34,7 +34,7 @@ EXEC cfg.usp_RunScheduledBackups
     @Debug = 1;
 ```
 
-### Expected Behavior
+### Expected Behavior:
 - The procedure evaluates all databases
 - Determines which backup type is due
 - Returns a decision matrix without executing backups
@@ -91,8 +91,6 @@ Focus on:
 - File naming convention
 - Timestamp consistency
 - Presence of LOG backups every ~15 minutes
-
-### Interpretation
 
 Observed behavior:
 - LOG backups follow a stable cadence (15-minute intervals)
