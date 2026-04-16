@@ -8,22 +8,21 @@
 
 This project provides a **production-oriented framework** for:
 
-- backup validation  
-- point-in-time recovery (`STOPAT`)  
-- deterministic rollback using transaction marks (`STOPBEFOREMARK`)  
-- selective data repair without full database restore  
+- Backup validation  
+- Point-In-Time Recovery (`STOPAT`)  
+- Deterministic rollback using transaction marks (`STOPBEFOREMARK`)  
 
 It focuses on **real-world recovery scenarios**, not just backup generation.
 
 ---
 
-## Why This Project Exists?
+## Why this project exists?
 
 In many environments:
 
-- backups are taken successfully  
-- but recovery is never tested  
-- and incident response depends on guesswork  
+- Backups are taken successfully,
+- but recovery is never tested and
+- incident response depends on guesswork  
 
 This framework addresses that gap by providing:
 
