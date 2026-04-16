@@ -20,9 +20,4 @@
 - [Design Principles](/docs/architecture/design-principles.md)
 - [Scope and Assumptions](/docs/architecture/scope-and-assumptions.md)
 
----
-
-<p align="center">
-<a href="/README.md">Home</a>
-</p>
 
