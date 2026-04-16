@@ -54,8 +54,6 @@ SELECT	'Return Value' = @return_value
 ```
 
 Expected Behavior:
-
-The procedure:
 - Inserts canary records
 - Creates a marked transaction
 - Generates a LOG backup capturing the mark
@@ -119,13 +117,13 @@ DBG Ended at     =[2026-04-08 12:37:52.5555420] IN 8.861 seconds.
 
 The framework creates controlled markers in the source database.
 
-🔍 Evidence: Canarys created at Source Database
-
 ```sql
 SELECT *
 FROM [LabCriticalDB].dbo.PitrCanary
 ORDER BY CreatedAt DESC;
 ```
+
+🔍 Evidence: Canarys created at Source Database
 
 <p align="center">
   <img src="images/Restore_Validation_Evidence_Step2_1.jpg" width="900">
@@ -203,17 +201,17 @@ FROM [LabCriticalDB_RestoreTest].dbo.PitrCanary
 ORDER BY CreatedAt DESC;
 ```
 
-🔍 Evidence: Source & Target Canary Tables
+🔍 Evidence: Source Canary Table
 
 <p align="center">
   <img src="images/Restore_Validation_Evidence_Step2_1.jpg" width="900">
 </p>
 
+🔍 Evidence: Target Canary Table
+
 <p align="center">
   <img src="images/Restore_Validation_Evidence_Step4.jpg" width="900">
 </p>
-
-Interpretation
 
 This confirms that:
 - The restore stopped at the correct boundary
