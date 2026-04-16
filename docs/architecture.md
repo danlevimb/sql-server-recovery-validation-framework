@@ -4,10 +4,19 @@
 <a href="use-cases/use'cases.md">Use cases</a>
 </p>
 
----
-
 # Architecture
 
+This section describes the **conceptual and operational design** of the framework.
+
+It explains how backup execution, restore orchestration, and validation processes are structured to support **deterministic and testable recovery**.
+
+The goal is not only to show how components work individually, but how they interact to enable:
+
+- reliable backup generation  
+- predictable recovery behavior  
+- evidence-driven validation  
+
+## Contents
 - [Overview](/docs/architecture/overview.md)
 - [Ecosystem Context](/docs/architecture/ecosystem-context.md)
 - [Scheduling Model](/docs/architecture/scheduling-model.md)
