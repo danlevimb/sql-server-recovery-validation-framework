@@ -14,6 +14,6 @@ It provides step-by-step validation of:
 |---------|-------------|------|
 | Backup Execution | Demonstrates how backups are generated and validated through a complete execution flow. | [here](backup-execution.md) |
 | Restore Validation | Validates that backups are recoverable and consistent, using canary-based testing. | [here](restore-validation.md) |
-| Scheduling Behavior |Shows how the scheduler behaves under different operational conditions. | [here](scheduler-behavior.md) |
+| Scheduler Behavior |Shows how the scheduler behaves under different operational conditions. | [here](scheduler-behavior.md) |
 
 The goal is to prove that the framework is not only designed correctly, but **works deterministically in practice** proving the framework is predictable, testable and auditable, capable of supporting **real-world backup and recovery operations**.
