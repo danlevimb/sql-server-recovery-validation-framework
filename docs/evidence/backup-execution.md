@@ -24,7 +24,7 @@ The objective is to demonstrate that backup operations are:
 - Scheduler:
   - SQL Server Agent Job executes every **5 minutes**
 
-# Step 1 — Decision Engine (Dry Run)
+### Step 1 — Decision Engine (Dry Run)
 
 Execute the scheduler in validation mode:
 
@@ -34,7 +34,7 @@ EXEC cfg.usp_RunScheduledBackups
     @Debug = 1;
 ```
 
-### Expected Behavior:
+Expected Behavior:
 - The procedure evaluates all databases
 - Determines which backup type is due
 - Returns a decision matrix without executing backups
@@ -45,13 +45,13 @@ EXEC cfg.usp_RunScheduledBackups
   <img src="images/Backup_Execution_Evidence_Step1.JPG" width="900">
 </p>
 
-### Key Columns:
+Key Columns:
 - DatabaseName
 - SelectedBackupType
 - DecisionReason
 - LastFullAt / LastLogAt
 
-### Interpretation
+Interpretation
 - `LabCriticalDB` → LOG due
 - `TestCDC` → skipped Last log created at 09:50 am (Execution time: 10:05 am.)
 - `WideWorldImporters` → skipped (SIMPLE recovery model)
@@ -71,7 +71,7 @@ EXEC cfg.usp_RunScheduledBackups
     @Debug = 1;
 ```
 
-Expected Behavior
+Expected Behavior:
 - Only databases with due backups are processed
 - Backup type is selected per database
 - Each execution is grouped by CorrelationID
@@ -87,7 +87,6 @@ The framework generates backup files in configured storage paths.
 </p>
 
 Focus on:
-
 - File naming convention
 - Timestamp consistency
 - Presence of LOG backups every ~15 minutes
