@@ -1,6 +1,6 @@
 <p align="center">
 <a href="../../README.md">Home</a> |
-<a href="evidence.md">Examples</a>
+<a href="evidence.md">Back</a>
 </p>
 
 # Restore Validation
