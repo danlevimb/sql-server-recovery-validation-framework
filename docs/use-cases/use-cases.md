@@ -1,7 +1,7 @@
 <p align="center">
 <a href="../../README.md">Home</a> |
-<a href="../architecture.md">Architecture</a>
-<a href="../evidence/evidence.md">Evidence</a> |
+<a href="../architecture.md">Architecture</a> |
+<a href="../evidence/evidence.md">Evidence</a>
 </p>
 
 # Use cases
