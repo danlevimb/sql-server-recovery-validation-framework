@@ -1,5 +1,11 @@
-# SQL Server Recovery & Validation Framework
-Deterministic recovery & validation for real-world data incidents.
+<p align="center">
+  <img src="diagrams/banner.png" width="900"/>
+</p>
+
+<p align="center">
+  <h1>SQL Server Recovery & Validation Framework</h1><br/>
+  Deterministic recovery for real-world data incidents
+</p>
 
 ---
 
