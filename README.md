@@ -107,3 +107,7 @@ Recovery must be:
 This project focuses on improving recovery strategies by minimizing the time required to determine the correct recovery point after a failure.
 
 Restore chain construction should not rely on manual effort or guesswork. It can be deterministic, reliable, and fully automated.
+
+---
+## Author
+Me 🙃
