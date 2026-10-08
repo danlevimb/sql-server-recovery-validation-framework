@@ -1,5 +1,5 @@
 <p align="center">
-<a href="README.md">Home</a> |
+<a href="../../README.md">Home</a> |
 <a href="../architecture.md">Back</a>
 </p>
 
@@ -86,7 +86,7 @@ This eliminates ambiguity and ensures that recovery behavior can be trusted.
 The following diagram illustrates how canary records are created around a recovery boundary and how they are used during restore validation:
 
 <p align="center">
-  <img src="/diagrams/recovery-validation-timeline.png" width="900">
+  <img src="../../diagrams/recovery-validation-timeline.png" width="900">
 </p>
 
 ---
