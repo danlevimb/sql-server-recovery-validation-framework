@@ -7,7 +7,7 @@
 
 The framework uses a **lightweight, trigger-based scheduling model** powered by SQL Server Agent.
 
-A single job executes [`[cfg].[usp_RunScheduledBackups]`](../docs/procedures/usp_RunScheduledBackups.md) at a fixed interval (typically every 5 minutes).
+A single job executes [`[cfg].[usp_RunScheduledBackups]`](../procedures/usp_RunScheduledBackups.md) at a fixed interval (typically every 5 minutes).
 
 ---
 
@@ -23,7 +23,7 @@ All decision-making is performed dynamically inside the procedure based on metad
 
 ### Execution Flow
 <p align="center">
-  <img src="/diagrams/scheduling_model.png" width="900">
+  <img src="../../diagrams/scheduling_model.png" width="900">
 </p>
 
 ---
