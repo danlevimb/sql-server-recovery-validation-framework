@@ -6,14 +6,20 @@
 
 # Evidence
 
-This section contains **execution evidence** demonstrating how the framework operates under real conditions.
+This section contains execution evidence demonstrating how the framework behaves under controlled operational scenarios.
 
-It provides step-by-step validation of:
+It provides step-by-step proof for:
 
-| Section | Description | Link |
-|---------|-------------|------|
-| Backup Execution | Demonstrates how backups are generated and validated through a complete execution flow. | [here](backup-execution.md) |
-| Restore Validation | Validates that backups are recoverable and consistent, using canary-based testing. | [here](restore-validation.md) |
-| Scheduler Behavior |Shows how the scheduler behaves under different operational conditions. | [here](scheduler-behavior.md) |
+| Section | What it proves | Link |
+|---|---|---|
+| Backup Execution | Backup execution, logging, and validation behavior | [Backup execution](backup-execution.md) |
+| Restore Validation | Recoverability testing and canary-based validation | [Restore validation](restore-validation.md) |
+| Scheduler Behavior | Metadata-driven scheduler decisions under different conditions | [Scheduler behavior](scheduler-behavior.md) |
 
-The goal is to prove that the framework is not only designed correctly, but **works deterministically in practice** proving the framework is predictable, testable and auditable, capable of supporting **real-world backup and recovery operations**.
+The evidence package also includes screenshots under `docs/evidence/images/` for backup execution, restore validation, and scheduler scenarios.
+
+The purpose is not to prove that a backup command can run. The purpose is to demonstrate that the framework is **predictable, testable, traceable, and recoverable in practice**.
+
+## Evidence boundary
+
+Execution evidence reflects controlled SQL Server validation scenarios. It does not claim to prove infrastructure-level disaster recovery, storage resiliency, network resiliency, or high-availability behavior outside the framework's documented scope.
